@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontier Pickleball - Membership Plans</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    html, body { height: 100%; margin: 0; }
+    * { box-sizing: border-box; }
+    .font-display { font-family: 'Playfair Display', Georgia, serif; }
+    .font-body { font-family: 'DM Sans', sans-serif; }
+
+    .app-bg {
+      background: linear-gradient(45deg, #F4F1EA 0%, #ede8dc 40%, #F4F1EA 60%, #f0ece3 100%);
+      min-height: 100%;
+      width: 100%;
+    }
+
+    .tab-btn {
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: #C8A961;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    .tab-btn.active::after {
+      width: 60%;
+    }
+    .tab-btn.active {
+      color: #1A3626;
+      font-weight: 700;
+    }
+
+    .plan-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+    .plan-card:nth-child(1) { animation-delay: 0.05s; }
+    .plan-card:nth-child(2) { animation-delay: 0.15s; }
+    .plan-card:nth-child(3) { animation-delay: 0.25s; }
+    .plan-card:nth-child(4) { animation-delay: 0.35s; }
+
+    .plan-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(26, 54, 38, 0.15);
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .founders-badge {
+      background: linear-gradient(90deg, #C8A961, #e0c97a, #C8A961);
+      background-size: 200% auto;
+      animation: shimmer 3s linear infinite;
+    }
+
+    .benefit-item {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .benefit-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.45rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #C8A961;
+    }
+
+    .founders-border {
+      border: 2px solid #C8A961;
+      position: relative;
+      overflow: hidden;
+    }
+    .founders-border::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #C8A961, #e0c97a, #C8A961);
+      background-size: 200% auto;
+      animation: shimmer 3s linear infinite;
+    }
+
+    .regular-border {
+      border: 2px solid #1A3626;
+    }
+
+    .scroll-wrapper {
+      overflow-x: auto;
+      overflow-y: visible;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+    }
+    .scroll-wrapper::-webkit-scrollbar {
+      height: 6px;
+    }
+    .scroll-wrapper::-webkit-scrollbar-track {
+      background: rgba(26,54,38,0.05);
+      border-radius: 3px;
+    }
+    .scroll-wrapper::-webkit-scrollbar-thumb {
+      background: rgba(200,169,97,0.4);
+      border-radius: 3px;
+    }
+
+    .bonus-item {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .bonus-item::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #C8A961;
+      font-size: 0.75rem;
+    }
+
+    .limited-pulse {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .savings-tag {
+      background: #1A3626;
+      color: #C8A961;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    
+    /* Native Accordion Styles */
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1A3626',
+            secondary: '#C8A961',
+            cream: '#F4F1EA'
+          }
+        }
+      }
+    };
+  </script>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body">
+  <div class="app-bg overflow-auto" id="app-wrapper"><header class="text-center pt-10 pb-6 px-4">
+    <div class="inline-flex items-center gap-2 mb-4">
+     <svg width="40" height="40" viewbox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#1A3626" stroke-width="2.5" fill="none" /> <circle cx="20" cy="20" r="10" stroke="#C8A961" stroke-width="1.5" fill="none" /> <line x1="20" y1="2" x2="20" y2="38" stroke="#1A3626" stroke-width="1" opacity="0.3" /> <line x1="2" y1="20" x2="38" y2="20" stroke="#1A3626" stroke-width="1" opacity="0.3" />
+     </svg><span class="font-display text-primary text-2xl font-bold tracking-tight">Frontier Pickleball</span>
+    </div>
+    <h1 id="page-title" class="font-display text-4xl md:text-5xl font-800 text-primary mb-3">Membership Plans</h1>
+    <p id="page-subtitle" class="font-body text-primary/60 text-lg max-w-xl mx-auto">Find the perfect plan for your pickleball journey</p>
+    <p class="text-xs text-primary/40 mt-2 italic">This is a demo preview — no purchases will be processed</p>
+   </header><nav class="flex justify-center gap-1 px-4 mb-8" role="tablist" aria-label="Membership tiers"><button class="tab-btn active px-5 py-3 text-sm md:text-base font-body rounded-t-lg text-primary" role="tab" aria-selected="true" data-tab="trailblazer" onclick="switchTab('trailblazer')"> 🏔️ Trailblazer </button> <button class="tab-btn px-5 py-3 text-sm md:text-base font-body rounded-t-lg text-primary/50" role="tab" aria-selected="false" data-tab="pioneer" onclick="switchTab('pioneer')"> 🧭 Pioneer </button> <button class="tab-btn px-5 py-3 text-sm md:text-base font-body rounded-t-lg text-primary/50" role="tab" aria-selected="false" data-tab="explorer" onclick="switchTab('explorer')"> 🌿 Explorer </button>
+   </nav>
+   <main class="px-4 pb-16 max-w-7xl mx-auto"><section id="tab-trailblazer" class="tab-content active" role="tabpanel">
+     <div class="text-center mb-6"><span class="inline-block bg-primary text-cream font-body text-xs font-600 px-4 py-1.5 rounded-full uppercase tracking-widest">The Frontier Experience — Ultimate Access</span>
+     </div>
+     <div class="scroll-wrapper">
+      <div class="flex gap-5 min-w-[1100px] pb-2"><div class="plan-card founders-border rounded-2xl bg-white/90 backdrop-blur-sm flex-1 min-w-[260px] flex flex-col">
+        <div class="p-5 pb-0">
+         <div class="founders-badge text-primary text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 uppercase tracking-wider">
+          ⭐ Founder's Edition
+         </div>
+         <div class="limited-pulse text-xs text-secondary font-semibold mb-3">
+          Only 100 memberships available
+         </div>
+         <h2 class="font-display text-xl font-bold text-primary mb-1">Trailblazer Annual</h2>
+         <p class="text-xs text-primary/50 mb-3">Founder's Edition</p>
+         <div class="mb-1"><span class="text-3xl font-display font-800 text-primary">$1,399</span> <span class="text-sm text-primary/50">/year</span>
+         </div>
+         <div class="flex items-center gap-2 mb-1"><span class="savings-tag text-xs font-bold px-2 py-0.5 rounded">Save $281/yr vs monthly</span>
+         </div>
+         <div class="flex items-center gap-2 mb-4"><span class="line-through text-primary/40 text-sm">$60 initiation</span> <span class="text-secondary font-bold text-sm">$1 initiation fee</span>
+         </div>
+        </div>
+        <div class="px-5 pb-3">
+         <div class="bg-secondary/10 rounded-xl p-3 mb-4">
+          <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2">🎁 Founder's Sign-Up Bonuses</p>
+          <div class="space-y-1.5 text-xs text-primary/80">
+           <div class="bonus-item">1 free extra month</div>
+           <div class="bonus-item">$120 credit towards merch, food &amp; bev ($10/mo)</div>
+           <div class="bonus-item">3,000 bonus points at sign up</div>
+           <div class="bonus-item">Free branded hoodie, t-shirt &amp; tote ($80 value)</div>
+           <div class="bonus-item">1 week early access before grand opening</div>
+          </div>
+         </div>
+        </div>
+        <div class="px-5 pb-5 flex-1 flex flex-col">
+         <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Trailblazer Benefits</p>
+         <div class="space-y-1.5 text-xs text-primary/70 flex-1 benefits-container" data-tier="trailblazer"></div>
+         <button class="mt-4 w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm" onclick="showDemoToast()">Select Plan</button>
+        </div>
+       </div><div class="plan-card regular-border rounded-2xl bg-white/80 backdrop-blur-sm flex-1 min-w-[260px] flex flex-col">
+        <div class="p-5 pb-0">
+         <div class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 uppercase tracking-wider">
+          Standard
+         </div>
+         <div class="text-xs text-transparent mb-3">
+          ‎
+         </div>
+         <h2 class="font-display text-xl font-bold text-primary mb-1">Trailblazer Annual</h2>
+         <p class="text-xs text-primary/50 mb-3">Standard Plan</p>
+         <div class="mb-1"><span class="text-3xl font-display font-800 text-primary">$1,399</span> <span class="text-sm text-primary/50">/year</span>
+         </div>
+         <div class="flex items-center gap-2 mb-1"><span class="savings-tag text-xs font-bold px-2 py-0.5 rounded">Save $281/yr vs monthly</span>
+         </div>
+         <div class="mb-4"><span class="text-primary/70 text-sm">$60 initiation fee</span>
+         </div>
+        </div>
+        <div class="px-5 pb-5 flex-1 flex flex-col">
+         <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Trailblazer Benefits</p>
+         <div class="space-y-1.5 text-xs text-primary/70 flex-1 benefits-container" data-tier="trailblazer"></div>
+         <button class="mt-4 w-full bg-primary/80 hover:bg-primary text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm" onclick="showDemoToast()">Select Plan</button>
+        </div>
+       </div><div class="plan-card founders-border rounded-2xl bg-white/90 backdrop-blur-sm flex-1 min-w-[260px] flex flex-col">
+        <div class="p-5 pb-0">
+         <div class="founders-badge text-primary text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 uppercase tracking-wider">
+          ⭐ Founder's Edition
+         </div>
+         <div class="limited-pulse text-xs text-secondary font-semibold mb-3">
+          Only 100 memberships available
+         </div>
+         <h2 class="font-display text-xl font-bold text-primary mb-1">Trailblazer Monthly</h2>
+         <p class="text-xs text-primary/50 mb-3">Founder's Edition</p>
+         <div class="mb-1"><span class="text-3xl font-display font-800 text-primary">$140</span> <span class="text-sm text-primary/50">/month</span>
+         </div>
+         <div class="text-xs text-primary/40 mb-1">
+          $1,680/yr billed monthly
+         </div>
+         <div class="flex items-center gap-2 mb-1"><span class="line-through text-primary/40 text-sm">$60 initiation</span> <span class="text-secondary font-bold text-sm">$1 initiation fee</span>
+         </div>
+         <div class="mb-4"></div>
+        </div>
+        <div class="px-5 pb-3">
+         <div class="bg-secondary/10 rounded-xl p-3 mb-4">
+          <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2">🎁 Founder's Sign-Up Bonuses</p>
+          <div class="space-y-1.5 text-xs text-primary/80">
+           <div class="bonus-item">1 free extra month</div>
+           <div class="bonus-item">$120 credit towards merch, food &amp; bev ($10/mo)</div>
+           <div class="bonus-item">3,000 bonus points at sign up</div>
+           <div class="bonus-item">Free branded hoodie, t-shirt &amp; tote ($80 value)</div>
+           <div class="bonus-item">1 week early access before grand opening</div>
+          </div>
+         </div>
+        </div>
+        <div class="px-5 pb-5 flex-1 flex flex-col">
+         <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Trailblazer Benefits</p>
+         <div class="space-y-1.5 text-xs text-primary/70 flex-1 benefits-container" data-tier="trailblazer"></div>
+         <button class="mt-4 w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm" onclick="showDemoToast()">Select Plan</button>
+        </div>
+       </div><div class="plan-card regular-border rounded-2xl bg-white/80 backdrop-blur-sm flex-1 min-w-[260px] flex flex-col">
+        <div class="p-5 pb-0">
+         <div class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 uppercase tracking-wider">
+          Standard
+         </div>
+         <div class="text-xs text-transparent mb-3">
+          ‎
+         </div>
+         <h2 class="font-display text-xl font-bold text-primary mb-1">Trailblazer Monthly</h2>
+         <p class="text-xs text-primary/50 mb-3">Standard Plan</p>
+         <div class="mb-1"><span class="text-3xl font-display font-800 text-primary">$140</span> <span class="text-sm text-primary/50">/month</span>
+         </div>
+         <div class="text-xs text-primary/40 mb-1">
+          $1,680/yr billed monthly
+         </div>
+         <div class="mb-1"><span class="text-primary/70 text-sm">$60 initiation fee</span>
+         </div>
+         <div class="mb-4"></div>
+        </div>
+        <div class="px-5 pb-5 flex-1 flex flex-col">
+         <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Trailblazer Benefits</p>
+         <div class="space-y-1.5 text-xs text-primary/70 flex-1 benefits-container" data-tier="trailblazer"></div>
+         <button class="mt-4 w-full bg-primary/80 hover:bg-primary text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm" onclick="showDemoToast()">Select Plan</button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><section id="tab-pioneer" class="tab-content" role="tabpanel">
+     <div class="text-center mb-6"><span class="inline-block bg-primary text-cream font-body text-xs font-600 px-4 py-1.5 rounded-full uppercase tracking-widest">The Core Membership — Elevated Play</span>
+     </div>
+     <div class="scroll-wrapper">
+      <div class="flex gap-5 min-w-[1100px] pb-2"><div class="plan-card founders-border rounded-2xl bg-white/90 backdrop-blur-sm flex-1 min-w-[260px] flex flex-col">
+        <div class="p-5 pb-0">
+         <div class="founders-badge text-primary text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 uppercase tracking-wider">
+          ⭐ Founder's Edition
+         </div>
+         <div class="limited-pulse text-xs text-secondary font-semibold mb-3">
+          Only 100 memberships available
+         </div>
+         <h2 class="font-display text-xl font-bold text-primary mb-1">Pioneer Annual</h2>
+         <p class="text-xs text-primary/50 mb-3">Founder's Edition</p>
+         <div class="mb-1"><span class="text-3xl font-display font-800 text-primary">$1,199</span> <span class="text-sm text-primary/50">/year</span>
+         </div>
+         <div class="flex items-center gap-2 mb-1"><span class="savings-tag text-xs font-bold px-2 py-0.5 rounded">Save $181/yr vs monthly</span>
+         </div>
+         <div class="flex items-center gap-2 mb-4"><span class="line-through text-primary/40 text-sm">$50 initiation</span> <span class="text-secondary font-bold text-sm">$1 initiation fee</span>
+         </div>
+        </div>
+        <div class="px-5 pb-3">
+         <div class="bg-secondary/10 rounded-xl p-3 mb-4">
+          <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2">🎁 Founder's Sign-Up Bonuses</p>
+          <div class="space-y-1.5 text-xs text-primary/80">
+           <div class="bonus-item">1 free extra month</div>
+           <div class="bonus-item">$60 credit towards merch, food &amp; bev ($5/mo)</div>
+           <div class="bonus-item">2,000 bonus points at sign up</div>
+           <div class="bonus-item">Free branded t-shirt &amp; tote ($65 value)</div>
+          </div>
+         </div>
+        </div>
+        <div class="px-5 pb-5 flex-1 flex flex-col">
+         <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Pioneer Benefits</p>
+         <div class="space-y-1.5 text-xs text-primary/70 flex-1 benefits-container" data-tier="pioneer"></div>
+         <button class="mt-4 w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm" onclick="showDemoToast()">Select Plan</button>
+        </div>
+       </div><div class="plan-card regular-border rounded-2xl bg-white/80 backdrop-blur-sm flex-1 min-w-[260px] flex flex-col">
+        <div class="p-5 pb-0">
+         <div class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 uppercase tracking-wider">
+          Standard
+         </div>
+         <div class="text-xs text-transparent mb-3">
+          ‎
+         </div>
+         <h2 class="font-display text-xl font-bold text-primary mb-1">Pioneer Annual</h2>
+         <p class="text-xs text-primary/50 mb-3">Standard Plan</p>
+         <div class="mb-1"><span class="text-3xl font-display font-800 text-primary">$1,199</span> <span class="text-sm text-primary/50">/year</span>
+         </div>
+         <div class="flex items-center gap-2 mb-4"><span class="savings-tag text-xs font-bold px-2 py-0.5 rounded">Save $181/yr vs monthly</span>
+         </div>
+        </div>
+        <div class="px-5 pb-5 flex-1 flex flex-col">
+         <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Pioneer Benefits</p>
+         <div class="space-y-1.5 text-xs text-primary/70 flex-1 benefits-container" data-tier="pioneer"></div>
+         <button class="mt-4 w-full bg-primary/80 hover:bg-primary text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm" onclick="showDemoToast()">Select Plan</button>
+        </div>
+       </div><div class="plan-card founders-border rounded-2xl bg-white/90 backdrop-blur-sm flex-1 min-w-[260px] flex flex-col">
+        <div class="p-5 pb-0">
+         <div class="founders-badge text-primary text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 uppercase tracking-wider">
+          ⭐ Founder's Edition
+         </div>
+         <div class="limited-pulse text-xs text-secondary font-semibold mb-3">
+          Only 100 memberships available
+         </div>
+         <h2 class="font-display text-xl font-bold text-primary mb-1">Pioneer Monthly</h2>
+         <p class="text-xs text-primary/50 mb-3">Founder's Edition</p>
+         <div class="mb-1"><span class="text-3xl font-display font-800 text-primary">$115</span> <span class="text-sm text-primary/50">/month</span>
+         </div>
+         <div class="text-xs text-primary/40 mb-1">
+          $1,380/yr billed monthly
+         </div>
+         <div class="flex items-center gap-2 mb-4"><span class="line-through text-primary/40 text-sm">$50 initiation</span> <span class="text-secondary font-bold text-sm">$1 initiation fee</span>
+         </div>
+        </div>
+        <div class="px-5 pb-3">
+         <div class="bg-secondary/10 rounded-xl p-3 mb-4">
+          <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2">🎁 Founder's Sign-Up Bonuses</p>
+          <div class="space-y-1.5 text-xs text-primary/80">
+           <div class="bonus-item">1 free extra month</div>
+           <div class="bonus-item">$60 credit towards merch, food &amp; bev ($5/mo)</div>
+           <div class="bonus-item">2,000 bonus points at sign up</div>
+           <div class="bonus-item">Free branded t-shirt &amp; tote ($65 value)</div>
+          </div>
+         </div>
+        </div>
+        <div class="px-5 pb-5 flex-1 flex flex-col">
+         <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Pioneer Benefits</p>
+         <div class="space-y-1.5 text-xs text-primary/70 flex-1 benefits-container" data-tier="pioneer"></div>
+         <button class="mt-4 w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm" onclick="showDemoToast()">Select Plan</button>
+        </div>
+       </div><div class="plan-card regular-border rounded-2xl bg-white/80 backdrop-blur-sm flex-1 min-w-[260px] flex flex-col">
+        <div class="p-5 pb-0">
+         <div class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 uppercase tracking-wider">
+          Standard
+         </div>
+         <div class="text-xs text-transparent mb-3">
+          ‎
+         </div>
+         <h2 class="font-display text-xl font-bold text-primary mb-1">Pioneer Monthly</h2>
+         <p class="text-xs text-primary/50 mb-3">Standard Plan</p>
+         <div class="mb-1"><span class="text-3xl font-display font-800 text-primary">$115</span> <span class="text-sm text-primary/50">/month</span>
+         </div>
+         <div class="text-xs text-primary/40 mb-4">
+          $1,380/yr billed monthly
+         </div>
+        </div>
+        <div class="px-5 pb-5 flex-1 flex flex-col">
+         <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Pioneer Benefits</p>
+         <div class="space-y-1.5 text-xs text-primary/70 flex-1 benefits-container" data-tier="pioneer"></div>
+         <button class="mt-4 w-full bg-primary/80 hover:bg-primary text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm" onclick="showDemoToast()">Select Plan</button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><section id="tab-explorer" class="tab-content" role="tabpanel">
+     <div class="text-center mb-6"><span class="inline-block bg-primary text-cream font-body text-xs font-600 px-4 py-1.5 rounded-full uppercase tracking-widest">The Basecamp — Start Your Journey</span>
+     </div>
+     <div class="scroll-wrapper">
+      <div class="flex gap-5 justify-center max-w-[600px] mx-auto pb-2"><div class="plan-card founders-border rounded-2xl bg-white/90 backdrop-blur-sm flex-1 min-w-[260px] flex flex-col">
+        <div class="p-5 pb-0">
+         <div class="founders-badge text-primary text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 uppercase tracking-wider">
+          ⭐ Founder's Edition
+         </div>
+         <div class="limited-pulse text-xs text-secondary font-semibold mb-3">
+          Only 100 memberships available
+         </div>
+         <h2 class="font-display text-xl font-bold text-primary mb-1">Explorer</h2>
+         <p class="text-xs text-primary/50 mb-3">Founder's Edition</p>
+         <div class="mb-1"><span class="text-3xl font-display font-800 text-primary">$0</span> <span class="text-sm text-secondary font-bold ml-1">Free to Join*</span>
+         </div>
+         <div class="flex items-center gap-2 mb-4"><span class="line-through text-primary/40 text-sm">$40 initiation</span> <span class="text-secondary font-bold text-sm">$1 initiation fee</span>
+         </div>
+        </div>
+        <div class="px-5 pb-3">
+         <div class="bg-secondary/10 rounded-xl p-3 mb-4">
+          <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2">🎁 Founder's Sign-Up Bonuses</p>
+          <div class="space-y-1.5 text-xs text-primary/80">
+           <div class="bonus-item">500 extra bonus points at sign up (1,000 total)</div>
+          </div>
+         </div>
+        </div>
+        <div class="px-5 pb-5 flex-1 flex flex-col">
+         <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Explorer Benefits</p>
+         <div class="space-y-1.5 text-xs text-primary/70 flex-1 benefits-container" data-tier="explorer"></div>
+         <button class="mt-4 w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm" onclick="showDemoToast()">Select Plan</button>
+        </div>
+       </div><div class="plan-card regular-border rounded-2xl bg-white/80 backdrop-blur-sm flex-1 min-w-[260px] flex flex-col">
+        <div class="p-5 pb-0">
+         <div class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 uppercase tracking-wider">
+          Standard
+         </div>
+         <div class="text-xs text-transparent mb-3">
+          ‎
+         </div>
+         <h2 class="font-display text-xl font-bold text-primary mb-1">Explorer</h2>
+         <p class="text-xs text-primary/50 mb-3">Standard Plan</p>
+         <div class="mb-1"><span class="text-3xl font-display font-800 text-primary">$0</span> <span class="text-sm text-secondary font-bold ml-1">Free to Join*</span>
+         </div>
+         <div class="mb-4"><span class="text-primary/70 text-sm">$40 initiation fee</span>
+         </div>
+        </div>
+        <div class="px-5 pb-5 flex-1 flex flex-col">
+         <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Explorer Benefits</p>
+         <div class="space-y-1.5 text-xs text-primary/70 flex-1 benefits-container" data-tier="explorer"></div>
+         <button class="mt-4 w-full bg-primary/80 hover:bg-primary text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm" onclick="showDemoToast()">Select Plan</button>
+        </div>
+       </div>
+      </div>
+     </div>
+     <p class="text-center text-xs text-primary/40 mt-4">*Free monthly membership — pay-per-use for court reservations</p>
+    </section>
+   </main><div id="demo-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-primary text-cream px-6 py-3 rounded-xl shadow-2xl font-body text-sm font-500 opacity-0 pointer-events-none transition-all duration-300 z-50 flex items-center gap-2" style="transform: translate(-50%, 20px);"><span>🎾</span> This is a demo — no purchase will be made
+   </div><footer class="text-center py-6 px-4">
+    <p class="text-xs text-primary/30 font-body">Demo preview only · Frontier Pickleball © 2025</p>
+   </footer>
+  </div>
+  <script>
+    // --- CENTRALIZED BENEFITS DATA ---
+    // 1. The main benefits displayed directly under each tier
+    const coreBenefits = {
+      explorer: [
+        "Court reservations: $40/hr",
+        "Book 3 days in advance",
+        "One free Open Play Day Pass ($40 value)",
+        "10% off equipment rental",
+        "5% off merch, food & beverage",
+        "500 bonus points at sign up",
+        "1 guest pass a month",
+        "🎂 Birthday: 250 bonus points"
+      ],
+      pioneer: [
+        "Unlimited Open Play",
+        "Book 5 days in advance",
+        "10% off leagues, tournaments, clinics, classes",
+        "1,000 bonus points at sign up",
+        "2 guest passes a month",
+        "🎂 Birthday: 500 pts + 10% off event room"
+      ],
+      trailblazer: [
+        "Unlimited court reservations (up to 4 active, 2/day)",
+        "Free ball machine rental once a week",
+        "20% off equipment rental",
+        "20% off leagues, tournaments, clinics, classes",
+        "3 guest passes a month",
+        "🎂 Birthday: 1,000 pts + 20% off event room"
+      ]
+    };
+
+    // 2. The filtered benefits shown inside the "Includes [Tier] Benefits" dropdowns. 
+    // Overlapping upgrades (like guest passes or points) have been removed here.
+    const includedBenefits = {
+      
+      // What to show when Pioneer drops down to show Explorer:
+      explorerForPioneer: [
+        "Court reservations: $40/hr",
+        "One free Open Play Day Pass ($40 value)",
+        "10% off equipment rental",
+        "5% off merch, food & beverage"
+      ],
+      
+      // What to show when Trailblazer drops down to show Pioneer:
+      pioneerForTrailblazer: [
+        "Unlimited Open Play",
+        "Book 5 days in advance"
+      ],
+
+      // What to show when Trailblazer drops down ALL the way to Explorer:
+      // (Notice we removed the 10% equipment rental here, since Trailblazer gets 20%)
+      explorerForTrailblazer: [
+        "Court reservations: $40/hr",
+        "One free Open Play Day Pass ($40 value)",
+        "5% off merch, food & beverage"
+      ]
+    };
+
+    // Helper to generate the list items
+    function generateListHTML(benefitsArray) {
+      return benefitsArray.map(benefit => `<div class="benefit-item">${benefit}</div>`).join('');
+    }
+
+    // Helper to generate the expandable accordion for lower tiers
+    function generateAccordion(title, contentHTML) {
+      return `
+        <details class="group mt-3 bg-primary/5 rounded-lg">
+          <summary class="flex items-center cursor-pointer list-none text-primary font-bold text-xs p-2 transition-colors hover:text-secondary rounded-lg">
+            <span class="mr-2 transition-transform duration-200 group-open:rotate-90">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </span>
+            ${title}
+          </summary>
+          <div class="p-3 pt-0 space-y-1.5 text-xs text-primary/70">
+            ${contentHTML}
+          </div>
+        </details>
+      `;
+    }
+
+    // Inject the benefits when the page loads
+    document.addEventListener("DOMContentLoaded", () => {
+      // Generate the Core Lists
+      const explorerHTML = generateListHTML(coreBenefits.explorer);
+      const pioneerHTML = generateListHTML(coreBenefits.pioneer);
+      const trailblazerHTML = generateListHTML(coreBenefits.trailblazer);
+
+      // Generate the Filtered Dropdown Lists
+      const expForPioneerHTML = generateListHTML(includedBenefits.explorerForPioneer);
+      const pioForTrailblazerHTML = generateListHTML(includedBenefits.pioneerForTrailblazer);
+      const expForTrailblazerHTML = generateListHTML(includedBenefits.explorerForTrailblazer);
+
+      document.querySelectorAll('.benefits-container').forEach(container => {
+        const tier = container.getAttribute('data-tier');
+        
+        if (tier === 'explorer') {
+          container.innerHTML = explorerHTML;
+        } 
+        else if (tier === 'pioneer') {
+          container.innerHTML = pioneerHTML + generateAccordion('Includes Explorer Benefits', expForPioneerHTML);
+        } 
+        else if (tier === 'trailblazer') {
+          // Trailblazer gets its own benefits + a nested accordion for Pioneer + a nested accordion for Explorer
+          const nestedLowerTiersHTML = pioForTrailblazerHTML + generateAccordion('Includes Explorer Benefits', expForTrailblazerHTML);
+          container.innerHTML = trailblazerHTML + generateAccordion('Includes Pioneer Benefits', nestedLowerTiersHTML);
+        }
+      });
+    });
+
+    // Tab switching
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => {
+        el.classList.remove('active');
+        el.setAttribute('aria-selected', 'false');
+        el.classList.add('text-primary/50');
+        el.classList.remove('text-primary');
+      });
+      document.getElementById('tab-' + tab).classList.add('active');
+      const activeBtn = document.querySelector('[data-tab="' + tab + '"]');
+      activeBtn.classList.add('active');
+      activeBtn.setAttribute('aria-selected', 'true');
+      activeBtn.classList.remove('text-primary/50');
+      activeBtn.classList.add('text-primary');
+
+      // Re-trigger card animations
+      document.getElementById('tab-' + tab).querySelectorAll('.plan-card').forEach((card, i) => {
+        card.style.animation = 'none';
+        card.offsetHeight;
+        card.style.animation = 'fadeUp 0.5s ease forwards';
+        card.style.animationDelay = (i * 0.1) + 's';
+      });
+    }
+
+    // Demo toast
+    function showDemoToast() {
+      const toast = document.getElementById('demo-toast');
+      toast.style.opacity = '1';
+      toast.style.transform = 'translate(-50%, 0)';
+      toast.style.pointerEvents = 'auto';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, 20px)';
+        toast.style.pointerEvents = 'none';
+      }, 2500);
+    }
+    
+    // Element SDK and Icons initialization
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+  </script>
+ </body>
+</html>
