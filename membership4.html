@@ -22,25 +22,14 @@
     .tab-btn {
       transition: all 0.3s ease;
       position: relative;
-    }
-    .tab-btn::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 3px;
-      background: #C8A961;
-      border-radius: 2px;
-      transition: width 0.3s ease;
-    }
-    .tab-btn.active::after {
-      width: 60%;
+      border: 2px solid transparent;
     }
     .tab-btn.active {
       color: #1A3626;
       font-weight: 700;
+      border-color: #C8A961;
+      background-color: rgba(200, 169, 97, 0.1);
+      box-shadow: 0 4px 6px -1px rgba(200, 169, 97, 0.1);
     }
 
     .plan-card {
@@ -239,10 +228,10 @@
     <p class="text-xs text-primary/40 mt-2 italic">This is a demo preview — no purchases will be processed</p>
    </header>
 
-   <nav class="flex justify-center gap-1 px-4 mb-8" role="tablist" aria-label="Membership tiers">
-      <button class="tab-btn active px-5 py-3 text-sm md:text-base font-body rounded-t-lg text-primary" role="tab" aria-selected="true" data-tab="trailblazer" onclick="switchTab('trailblazer')"> 🏔️ Trailblazer </button> 
-      <button class="tab-btn px-5 py-3 text-sm md:text-base font-body rounded-t-lg text-primary/50" role="tab" aria-selected="false" data-tab="pioneer" onclick="switchTab('pioneer')"> 🧭 Pioneer </button> 
-      <button class="tab-btn px-5 py-3 text-sm md:text-base font-body rounded-t-lg text-primary/50" role="tab" aria-selected="false" data-tab="explorer" onclick="switchTab('explorer')"> 🌿 Explorer </button>
+   <nav class="flex justify-center gap-2 px-4 mb-8" role="tablist" aria-label="Membership tiers">
+      <button class="tab-btn active px-5 py-3 text-sm md:text-base font-body rounded-lg text-primary" role="tab" aria-selected="true" data-tab="trailblazer" onclick="switchTab('trailblazer')"> 🏔️ Trailblazer </button> 
+      <button class="tab-btn px-5 py-3 text-sm md:text-base font-body rounded-lg text-primary/50" role="tab" aria-selected="false" data-tab="pioneer" onclick="switchTab('pioneer')"> 🧭 Pioneer </button> 
+      <button class="tab-btn px-5 py-3 text-sm md:text-base font-body rounded-lg text-primary/50" role="tab" aria-selected="false" data-tab="explorer" onclick="switchTab('explorer')"> 🌿 Explorer </button>
    </nav>
 
    <main class="px-4 pb-8 max-w-7xl mx-auto">
