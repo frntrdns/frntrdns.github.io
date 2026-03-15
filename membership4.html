@@ -195,6 +195,28 @@
     .highlight-flash {
       animation: highlightFlash 2.5s ease-out forwards;
     }
+
+    /* Benefits Expander Styles */
+    .benefits-wrapper {
+      position: relative;
+    }
+    .benefits-container {
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out;
+    }
+    .benefits-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to top, rgba(250, 248, 243, 0.95) 10%, transparent);
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .benefits-wrapper.expanded .benefits-fade {
+      opacity: 0;
+    }
   </style>
   <script>
     tailwind.config = {
@@ -306,10 +328,10 @@
              <i data-lucide="gift" class="w-4 h-4"></i> Founder's Bonuses
           </p>
           <div class="space-y-1.5 text-xs text-primary/80">
-           <div class="bonus-item"><span tabindex="0" class="has-tooltip pb-0.5 border-b border-dotted border-secondary/70">1 bonus month<span class="tooltip-content founder-shiny-tooltip">Get the 13th month free!</span></span></div>
+           <div class="bonus-item"><span tabindex="0" class="has-tooltip pb-0.5 border-b border-dotted border-secondary/70"><strong>1 bonus month</strong><span class="tooltip-content founder-shiny-tooltip">Get the 13th month free!</span></span></div>
            <div class="bonus-item">$120 credit towards merch, food &amp; bev ($10/mo)</div>
-           <div class="bonus-item">2,000 extra bonus points at sign up (3,000 total)</div>
-           <div class="bonus-item">Free branded hoodie, t-shirt &amp; tote ($80 value)</div>
+           <div class="bonus-item">2,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign up (3,000 total)</div>
+           <div class="bonus-item">Free Frontier hoodie, t-shirt &amp; tote ($80 value)</div>
            <div class="bonus-item">1 week early access before grand opening</div>
           </div>
          </div>
@@ -447,8 +469,8 @@
              <i data-lucide="gift" class="w-4 h-4"></i> Founder's Bonuses
           </p>
           <div class="space-y-1.5 text-xs text-primary/80">
-           <div class="bonus-item">2,000 extra bonus points at sign up (3,000 total)</div>
-           <div class="bonus-item">Free branded hoodie, t-shirt &amp; tote ($80 value)</div>
+           <div class="bonus-item">2,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign up (3,000 total)</div>
+           <div class="bonus-item">Free Frontier hoodie, t-shirt &amp; tote ($80 value)</div>
            <div class="bonus-item">1 week early access before grand opening</div>
           </div>
          </div>
@@ -524,16 +546,23 @@
      </div>
      
      <div class="bg-white/80 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8 mt-10 mb-8 max-w-5xl mx-auto">
-       <h3 class="font-display text-2xl font-bold text-primary mb-6 text-center">Trailblazer Membership Details</h3>
+       <h3 class="font-display text-2xl font-bold text-primary mb-6 text-center">The Trailblazer Membership Gives You:</h3>
        
        <div class="flex flex-col gap-4 mb-8" id="highlights-trailblazer">
        </div>
 
        <h4 class="font-display text-xl font-bold text-primary mb-2 border-b border-primary/10 pb-2">Frontier Member Benefits</h4>
        <p class="text-sm text-primary/70 mb-5">These exclusive perks are included for all our members, simply for being part of the Frontier Pickleball community.</p>
-       <div class="flex flex-col space-y-4" id="benefits-grid-trailblazer">
+       
+       <div class="benefits-wrapper" id="wrapper-trailblazer">
+         <div class="flex flex-col space-y-4 benefits-container" id="benefits-grid-trailblazer" style="max-height: 380px;">
+         </div>
+         <div class="benefits-fade"></div>
        </div>
-     </div>
+       <button class="mt-5 w-full py-2.5 rounded-xl border border-primary/20 text-primary font-bold text-sm hover:bg-primary/5 transition-colors flex items-center justify-center gap-2" onclick="toggleBenefits(this, 'wrapper-trailblazer', 'benefits-grid-trailblazer')">
+         <span>Show All Benefits</span> <i data-lucide="chevron-down" class="w-4 h-4"></i>
+       </button>
+       </div>
     </section>
 
     <section id="tab-pioneer" class="tab-content" role="tabpanel">
@@ -592,10 +621,10 @@
              <i data-lucide="gift" class="w-4 h-4"></i> Founder's Bonuses
           </p>
           <div class="space-y-1.5 text-xs text-primary/80">
-           <div class="bonus-item"><span tabindex="0" class="has-tooltip pb-0.5 border-b border-dotted border-secondary/70">1 bonus month<span class="tooltip-content founder-shiny-tooltip">Get the 13th month free!</span></span></div>
+           <div class="bonus-item"><span tabindex="0" class="has-tooltip pb-0.5 border-b border-dotted border-secondary/70"><strong>1 bonus month</strong><span class="tooltip-content founder-shiny-tooltip">Get the 13th month free!</span></span></div>
            <div class="bonus-item">$60 credit towards merch, food &amp; bev ($5/mo)</div>
-           <div class="bonus-item">1,000 extra bonus points at sign up (2,000 total)</div>
-           <div class="bonus-item">Free branded t-shirt &amp; tote ($65 value)</div>
+           <div class="bonus-item">1,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign up (2,000 total)</div>
+           <div class="bonus-item">Free Frontier t-shirt &amp; tote ($65 value)</div>
           </div>
          </div>
         </div>
@@ -704,8 +733,8 @@
              <i data-lucide="gift" class="w-4 h-4"></i> Founder's Bonuses
           </p>
           <div class="space-y-1.5 text-xs text-primary/80">
-           <div class="bonus-item">1,000 extra bonus points at sign up (2,000 total)</div>
-           <div class="bonus-item">Free branded t-shirt &amp; tote ($65 value)</div>
+           <div class="bonus-item">1,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign up (2,000 total)</div>
+           <div class="bonus-item">Free Frontier t-shirt &amp; tote ($65 value)</div>
           </div>
          </div>
         </div>
@@ -766,16 +795,23 @@
      </div>
      
      <div class="bg-white/80 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8 mt-10 mb-8 max-w-5xl mx-auto">
-       <h3 class="font-display text-2xl font-bold text-primary mb-6 text-center">Pioneer Membership Details</h3>
+       <h3 class="font-display text-2xl font-bold text-primary mb-6 text-center">The Pioneer Membership Gives You:</h3>
 
        <div class="flex flex-col gap-4 mb-8" id="highlights-pioneer">
        </div>
 
        <h4 class="font-display text-xl font-bold text-primary mb-2 border-b border-primary/10 pb-2">Frontier Member Benefits</h4>
        <p class="text-sm text-primary/70 mb-5">These exclusive perks are included for all our members, simply for being part of the Frontier Pickleball community.</p>
-       <div class="flex flex-col space-y-4" id="benefits-grid-pioneer">
+       
+       <div class="benefits-wrapper" id="wrapper-pioneer">
+         <div class="flex flex-col space-y-4 benefits-container" id="benefits-grid-pioneer" style="max-height: 380px;">
+         </div>
+         <div class="benefits-fade"></div>
        </div>
-     </div>
+       <button class="mt-5 w-full py-2.5 rounded-xl border border-primary/20 text-primary font-bold text-sm hover:bg-primary/5 transition-colors flex items-center justify-center gap-2" onclick="toggleBenefits(this, 'wrapper-pioneer', 'benefits-grid-pioneer')">
+         <span>Show All Benefits</span> <i data-lucide="chevron-down" class="w-4 h-4"></i>
+       </button>
+       </div>
     </section>
 
     <section id="tab-explorer" class="tab-content" role="tabpanel">
@@ -939,9 +975,9 @@
       { emoji: "🏆", title: "Tournaments", desc: "Receive 10% off entry fees for all Frontier Pickleball sanctioned tournaments." },
       { emoji: "🏅", title: "Leagues & Clinics", desc: "Level up your game with 20% off all league registrations, professional clinics, and group classes." },
       { emoji: "🎟️", title: "Guest Passes", desc: "Bring friends and family along with 3 complimentary guest passes loaded into your account every month." },
-      { emoji: "✨", title: "Sign-Up Bonus", desc: "Kickstart your membership with an instant 1,000 bonus points added to your account upon signing up." },
-      { emoji: "💰", title: "Frontier Bucks", desc: "Earn points for every check-in, league participation, and facility purchase to redeem for future rewards." },
-      { emoji: "🎂", title: "Birthday Reward", desc: "Celebrate your special month with 500 bonus points and 20% off booking <span tabindex='0' class='has-tooltip font-bold text-primary border-b border-dotted border-secondary/70 pb-0.5 cursor-pointer'>The Cabin<span class='tooltip-content'>Our private event room designed for birthday parties and small gatherings</span></span>." }
+      { emoji: "✨", title: "Sign-Up Bonus", desc: "Kickstart your membership with an instant 1,000 Frontier Points added to your account upon signing up." },
+      { emoji: "💰", title: "Frontier Points", desc: "Earn Frontier Points for every check-in, league participation, and facility purchase to redeem for future rewards." },
+      { emoji: "🎂", title: "Birthday Reward", desc: "Celebrate your special month with 500 bonus Frontier Points and 20% off booking <span tabindex='0' class='has-tooltip font-bold text-primary border-b border-dotted border-secondary/70 pb-0.5 cursor-pointer'>The Cabin<span class='tooltip-content'>Our private event room designed for birthday parties and small gatherings</span></span>." }
     ];
 
     // 3. EDIT SPECIFIC TIER BENEFITS HERE
@@ -1071,6 +1107,41 @@
       return false;
     }
 
+    // Scroll directly to the Frontier Points Benefit
+    function scrollToFrontierPoints() {
+      const activeTab = document.querySelector('.tab-content.active');
+      if (activeTab) {
+        // Find the specific card
+        const headers = activeTab.querySelectorAll('h4');
+        let targetCard = null;
+        headers.forEach(h4 => {
+          if (h4.textContent.includes('Frontier Points')) {
+            targetCard = h4.closest('.bg-white.rounded-xl');
+          }
+        });
+
+        if (targetCard) {
+          // Check if it's hidden behind the closed max-height wrapper
+          const wrapper = targetCard.closest('.benefits-wrapper');
+          if (wrapper && !wrapper.classList.contains('expanded')) {
+             const btn = wrapper.nextElementSibling;
+             if(btn && btn.tagName === 'BUTTON') {
+                const containerId = wrapper.querySelector('.benefits-container').id;
+                toggleBenefits(btn, wrapper.id, containerId);
+             }
+          }
+          
+          // Slight delay to let the expansion register before scrolling
+          setTimeout(() => {
+             targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+             targetCard.classList.remove('highlight-flash');
+             void targetCard.offsetWidth; // Force a reflow
+             targetCard.classList.add('highlight-flash');
+          }, 100);
+        }
+      }
+    }
+
     // Scroll to the cancel anytime bullet point and highlight it
     function scrollToCancel() {
       const target = document.getElementById('cancel-anytime-bullet');
@@ -1083,6 +1154,34 @@
         void target.offsetWidth;
         
         target.classList.add('highlight-flash');
+      }
+    }
+
+    // Toggle benefits expansion
+    function toggleBenefits(btn, wrapperId, containerId) {
+      const wrapper = document.getElementById(wrapperId);
+      const container = document.getElementById(containerId);
+      const isExpanded = wrapper.classList.contains('expanded');
+      const textSpan = btn.querySelector('span');
+      const icon = btn.querySelector('i');
+      
+      if (isExpanded) {
+        // Collapse
+        wrapper.classList.remove('expanded');
+        container.style.maxHeight = '380px';
+        textSpan.textContent = 'Show All Benefits';
+        icon.setAttribute('data-lucide', 'chevron-down');
+      } else {
+        // Expand
+        wrapper.classList.add('expanded');
+        container.style.maxHeight = container.scrollHeight + 'px';
+        textSpan.textContent = 'Show Less';
+        icon.setAttribute('data-lucide', 'chevron-up');
+      }
+      
+      // Re-render the icon change
+      if (window.lucide) {
+        lucide.createIcons();
       }
     }
 
