@@ -971,12 +971,12 @@
     // 2. EDIT SHARED MEMBERSHIP BENEFITS HERE
     const sharedBenefits = [
       { emoji: "🍔", title: "Merch & Dining", desc: "Enjoy a 5% discount on all club merchandise, as well as food and beverages at our on-site café." },
+      { emoji: "💰", title: "Frontier Points", desc: "Earn Frontier Points for every check-in, league participation, and facility purchase to redeem for future rewards." },
+      { emoji: "✨", title: "Sign-Up Bonus", desc: "Kickstart your membership with an instant 1,000 Frontier Points added to your account upon signing up." },
       { emoji: "🏓", title: "Equipment Rental", desc: "Get 10% off top-tier paddle rentals and gear to ensure you're always playing your best." },
       { emoji: "🏆", title: "Tournaments", desc: "Receive 10% off entry fees for all Frontier Pickleball sanctioned tournaments." },
       { emoji: "🏅", title: "Leagues & Clinics", desc: "Level up your game with 20% off all league registrations, professional clinics, and group classes." },
       { emoji: "🎟️", title: "Guest Passes", desc: "Bring friends and family along with 3 complimentary guest passes loaded into your account every month." },
-      { emoji: "✨", title: "Sign-Up Bonus", desc: "Kickstart your membership with an instant 1,000 Frontier Points added to your account upon signing up." },
-      { emoji: "💰", title: "Frontier Points", desc: "Earn Frontier Points for every check-in, league participation, and facility purchase to redeem for future rewards." },
       { emoji: "🎂", title: "Birthday Reward", desc: "Celebrate your special month with 500 bonus Frontier Points and 20% off booking <span tabindex='0' class='has-tooltip font-bold text-primary border-b border-dotted border-secondary/70 pb-0.5 cursor-pointer'>The Cabin<span class='tooltip-content'>Our private event room designed for birthday parties and small gatherings</span></span>." }
     ];
 
@@ -1121,23 +1121,10 @@
         });
 
         if (targetCard) {
-          // Check if it's hidden behind the closed max-height wrapper
-          const wrapper = targetCard.closest('.benefits-wrapper');
-          if (wrapper && !wrapper.classList.contains('expanded')) {
-             const btn = wrapper.nextElementSibling;
-             if(btn && btn.tagName === 'BUTTON') {
-                const containerId = wrapper.querySelector('.benefits-container').id;
-                toggleBenefits(btn, wrapper.id, containerId);
-             }
-          }
-          
-          // Slight delay to let the expansion register before scrolling
-          setTimeout(() => {
-             targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-             targetCard.classList.remove('highlight-flash');
-             void targetCard.offsetWidth; // Force a reflow
-             targetCard.classList.add('highlight-flash');
-          }, 100);
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetCard.classList.remove('highlight-flash');
+          void targetCard.offsetWidth; // Force a reflow
+          targetCard.classList.add('highlight-flash');
         }
       }
     }
