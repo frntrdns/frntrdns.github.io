@@ -147,6 +147,8 @@
       text-decoration-style: dotted;
       text-decoration-color: rgba(200, 169, 97, 0.9);
       text-underline-offset: 3px;
+      /* Prevent mobile tap highlight block over the text */
+      -webkit-tap-highlight-color: transparent;
     }
     .has-tooltip:hover .tooltip-content,
     .has-tooltip:active .tooltip-content,
@@ -1053,6 +1055,18 @@
         target.classList.add('highlight-flash');
       }
     }
+
+    // --- TOOLTIP CLOSER ---
+    // Closes tooltips when tapping/clicking outside of them
+    ['click', 'touchend'].forEach(eventType => {
+      document.addEventListener(eventType, (e) => {
+        if (!e.target.closest('.has-tooltip')) {
+          document.querySelectorAll('.has-tooltip').forEach(tooltip => {
+            tooltip.blur();
+          });
+        }
+      });
+    });
   </script>
  </body>
 </html>
