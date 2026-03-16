@@ -178,9 +178,23 @@
       margin-left: -5px;
       border-width: 5px;
       border-style: solid;
-      border-color: #1A3626 transparent transparent transparent;
+      border-color: #F4F1EA transparent transparent transparent;
     }
 
+    /* Left-Align Tooltip Override for Edge Elements */
+    .has-tooltip.left-align .tooltip-content {
+      left: 0;
+      transform: translate(0, 0);
+    }
+    .has-tooltip.left-align:hover .tooltip-content,
+    .has-tooltip.left-align:active .tooltip-content,
+    .has-tooltip.left-align:focus .tooltip-content {
+      transform: translate(0, -8px);
+    }
+    .has-tooltip.left-align .tooltip-content::after {
+      left: 20px; 
+      margin-left: 0;
+    }
     /* Shiny Tooltip Override */
     .founder-shiny-tooltip {
       background: linear-gradient(90deg, #C8A961, #e0c97a, #C8A961) !important;
@@ -884,8 +898,8 @@
         <h3 class="font-display text-2xl font-bold text-primary mb-6 text-center">Compare Your Options</h3>
         
         <div class="bg-white rounded-xl shadow-sm border border-primary/10">
-          <div class="overflow-visible">
-            <table class="w-full text-left border-collapse min-w-full">
+          <div class="w-full overflow-x-auto pb-4 -mb-4">
+            <table class="w-full text-left border-collapse min-w-[700px]">
               <thead>
                 <tr class="bg-primary/5 border-b border-primary/10">
                   <th class="p-4 font-display text-lg font-bold text-primary w-[28%] rounded-tl-xl">Features & Pricing</th>
@@ -897,14 +911,14 @@
               <tbody class="text-sm md:text-base text-primary/80 divide-y divide-primary/10">
                 
                 <tr class="transition-colors hover:bg-primary/5">
-                  <td class="p-4 font-medium"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content z-50">Reserve open play sessions up to 7 days in advance.</span></span></td>
+                  <td class="p-4 font-medium"><span tabindex="0" class="has-tooltip left-align pb-0.5">Unlimited Open Play<span class="tooltip-content z-50">Reserve open play sessions up to 7 days in advance.</span></span></td>
                   <td class="p-4 text-center border-l border-primary/5"><i data-lucide="check-circle-2" class="w-5 h-5 text-secondary mx-auto"></i></td>
                   <td class="p-4 text-center border-l border-primary/5"><i data-lucide="check-circle-2" class="w-5 h-5 text-secondary mx-auto"></i></td>
                   <td class="p-4 text-center border-l border-primary/5 font-medium text-primary/50">Pay per play</td>
                 </tr>
                 
                 <tr class="transition-colors hover:bg-primary/5">
-                  <td class="p-4 font-medium"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Court Reservations<span class="tooltip-content z-50">Book private courts up to 7 days in advance. Max 4 active, 2 per day.</span></span></td>
+                  <td class="p-4 font-medium"><span tabindex="0" class="has-tooltip left-align pb-0.5">Unlimited Court Reservations<span class="tooltip-content z-50">Book private courts up to 7 days in advance. Max 4 active, 2 per day.</span></span></td>
                   <td class="p-4 text-center border-l border-primary/5"><i data-lucide="check-circle-2" class="w-5 h-5 text-secondary mx-auto"></i></td>
                   <td class="p-4 text-center border-l border-primary/5 text-primary/30 font-bold text-lg">-</td>
                   <td class="p-4 text-center border-l border-primary/5 font-medium text-primary/50">Pay per play</td>
