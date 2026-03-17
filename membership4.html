@@ -270,46 +270,27 @@
     <p class="text-xs text-primary/40 mt-2 italic">This is a demo preview — no purchases will be processed</p>
    </header>
 
-<nav class="flex justify-center items-center gap-2 px-4 mb-8" role="tablist" aria-label="Membership tiers">
-      <button class="tab-btn active px-5 py-3 text-sm md:text-base font-body rounded-lg text-primary" role="tab" aria-selected="true" data-tab="trailblazer" onclick="switchTab('trailblazer')"> 🏔️ Trailblazer </button> 
-      <button class="tab-btn px-5 py-3 text-sm md:text-base font-body rounded-lg text-primary/50" role="tab" aria-selected="false" data-tab="pioneer" onclick="switchTab('pioneer')"> 🧭 Pioneer </button> 
-      
-      <div class="w-[2px] h-8 bg-primary/10 mx-2 rounded-full"></div>
-      
-      <button class="tab-btn explorer-tab px-5 py-3 text-sm md:text-base font-body rounded-lg text-primary/50" role="tab" aria-selected="false" data-tab="explorer" onclick="switchTab('explorer')"> 🌿 Explorer </button>
-   </nav>
+<main class="px-4 pb-8 max-w-7xl mx-auto">
+    <div class="flex justify-center mb-8 relative z-10 mt-2">
+      <div class="bg-primary/5 p-1 rounded-full border border-primary/10 inline-flex relative shadow-inner">
+        <button id="master-annual-btn" class="relative z-10 px-8 py-2 rounded-full text-sm font-bold text-primary bg-white shadow-sm transition-all" onclick="toggleMasterBilling('annual')">Annual</button>
+        <button id="master-monthly-btn" class="relative z-10 px-8 py-2 rounded-full text-sm font-bold text-primary/60 hover:text-primary transition-all" onclick="toggleMasterBilling('monthly')">Monthly</button>
+      </div>
+    </div>
 
-   <main class="px-4 pb-8 max-w-7xl mx-auto">
-    
-    <section id="tab-trailblazer" class="tab-content active" role="tabpanel">
-     <div class="flex flex-col items-center text-center mb-10 max-w-3xl mx-auto px-4">
-  <h2 class="font-display text-3xl md:text-4xl font-800 text-primary mb-3">The Trailblazer Membership</h2>
-  <p class="text-base md:text-lg text-primary/70 leading-relaxed max-w-2xl">The ultimate membership for dedicated players.</p>
-</div>
-     <div class="flex justify-center mb-8 relative z-10">
-       <div class="bg-primary/5 p-1 rounded-full border border-primary/10 inline-flex relative shadow-inner">
-         
-         <button id="trailblazer-annual-btn" class="relative z-10 px-8 py-2 rounded-full text-sm font-bold text-primary bg-white shadow-sm transition-all" onclick="toggleBilling('trailblazer', 'annual')">Annual</button>
-         <button id="trailblazer-monthly-btn" class="relative z-10 px-8 py-2 rounded-full text-sm font-bold text-primary/60 hover:text-primary transition-all" onclick="toggleBilling('trailblazer', 'monthly')">Monthly</button>
-       </div>
-     </div>
-
-     <div class="flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto px-4 pb-8">
-       
-       <div id="trailblazer-annual-cards" class="flex flex-col md:flex-row gap-6 w-full justify-center">
-         
-         <div class="plan-card founders-border rounded-2xl bg-white/90 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col" style="animation-delay: 0.05s;">
+    <div id="master-annual-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 pb-12 transition-all">
+      
+      <div id="trailblazer-annual-cards" class="flex flex-col w-full h-full">
+         <div class="plan-card flex-1 founders-border rounded-2xl bg-white/90 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col mx-auto" style="animation-delay: 0.05s;">
           <div class="p-5 pb-0 flex flex-col">
            <div class="h-6 mb-2">
              <div class="founders-badge text-primary text-xs font-bold px-3 py-1 rounded-full inline-block uppercase tracking-wider">⭐ Founder's Edition</div>
            </div>
            <div class="h-4 mb-3">
-             <div class="limited-pulse text-xs text-secondary font-semibold">Only 100 memberships available</div>
+             <div class="limited-pulse text-xs text-secondary font-semibold">Only 100 available</div>
            </div>
            <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Trailblazer Annual <i data-lucide="calendar" class="w-5 h-5 text-secondary"></i></h2>
-           <div class="h-4 mb-3">
-             <p class="text-xs text-primary/50">Founder's Edition</p>
-           </div>
+           <div class="h-4 mb-3"><p class="text-xs text-primary/50">Founder's Edition</p></div>
            
            <div class="h-24 flex flex-col mb-2">
              <div class="flex items-baseline gap-1 h-8">
@@ -325,50 +306,41 @@
              </div>
            </div>
           </div>
-          
-          <div class="px-5 pb-3">
+          <div class="px-5 pb-3 flex-1">
            <div class="bg-gradient-to-br from-primary to-[#2C523B] border border-secondary/50 rounded-xl p-4 shadow-md relative overflow-visible mb-3">
-             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Membership Perks</p>
+             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Perks</p>
              <div class="flex items-center gap-3 mb-3 relative z-10">
-  <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm"><i data-lucide="calendar-check" class="w-4 h-4"></i></div>
-               <div><div class="text-[15px] font-bold text-cream leading-tight"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Court Reservations<span class="tooltip-content">Book private courts up to 14 days in advance. Max 4 active, 2 per day.</span></span></div></div>
+               <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm"><i data-lucide="calendar-check" class="w-4 h-4"></i></div>
+               <div><div class="text-[14px] font-bold text-cream leading-tight"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Court Reservations<span class="tooltip-content">Book private courts up to 14 days in advance. Max 4 active, 2 per day.</span></span></div></div>
              </div>
              <div class="flex items-start gap-3 relative z-10">
                <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm mt-0.5"><i data-lucide="infinity" class="w-4 h-4"></i></div>
-               <div><div class="text-[15px] font-bold text-cream leading-tight mt-1"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content">Reserve open play sessions up to 7 days in advance.</span></span></div></div>
+               <div><div class="text-[14px] font-bold text-cream leading-tight mt-1"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content">Reserve open play sessions up to 7 days in advance.</span></span></div></div>
              </div>
            </div>
-
-           <div class="bg-primary/5 border border-primary/10 rounded-xl p-2.5 mb-3 flex items-center justify-center gap-2">
-             <span class="text-secondary text-base"></span>
-             <span class="text-sm font-bold text-primary">Save 16% ($289) vs monthly</span>
-           </div>
-
            <div class="bg-secondary/10 border border-secondary/20 rounded-xl p-3 mb-3 relative z-20">
             <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="gift" class="w-4 h-4"></i> Founder's Bonuses</p>
             <div class="space-y-1.5 text-xs text-primary/80">
              <div class="bonus-item"><span tabindex="0" class="has-tooltip pb-0.5 border-b border-dotted border-secondary/70"><strong>1 bonus month</strong><span class="tooltip-content founder-shiny-tooltip">Get the 13th month free!</span></span></div>
-             <div class="bonus-item">$120 credit towards merch, food &amp; bev ($10/mo)</div>
-             <div class="bonus-item">2,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign up (3,000 total)</div>
-             <div class="bonus-item">Exclusive Founder's Edition swag item</div>
              <div class="bonus-item">1 week early access before grand opening</div>
+             <div class="bonus-item">$120 merch & dining credit <em>($10/mo)</em></div>
+             <div class="bonus-item">Exclusive Founder's Edition swag item</div>
+             <div class="bonus-item">2,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> <em>(3,000 total)</em></div>
              <div class="bonus-item pt-1"><a href="#founders-explanation" onclick="document.getElementById('founders-explanation').scrollIntoView({ behavior: 'smooth' }); return false;" class="font-bold text-primary underline decoration-secondary decoration-2 underline-offset-2 hover:text-primary/70 transition-colors cursor-pointer">Learn more</a></div>
             </div>
            </div>
           </div>
-          
-          <div class="px-5 pb-5 flex-1 flex flex-col">
-           <button class="mt-auto w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
+          <div class="px-5 pb-5 mt-auto flex flex-col">
+           <button class="w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
           </div>
          </div>
 
-         <div class="plan-card regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col" style="animation-delay: 0.15s;">
+         <div class="plan-card flex-1 regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col mx-auto" style="animation-delay: 0.15s;">
           <div class="p-5 pb-0 flex flex-col">
            <div class="h-6 mb-2"><div class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full inline-block uppercase tracking-wider">Standard</div></div>
            <div class="h-4 mb-3"></div>
            <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Trailblazer Annual <i data-lucide="calendar" class="w-5 h-5 text-primary/30"></i></h2>
            <div class="h-4 mb-3"><p class="text-xs text-primary/50">Standard</p></div>
-
            <div class="h-24 flex flex-col mb-2">
              <div class="flex items-baseline gap-1 h-8">
                <span class="text-3xl font-display font-800 text-primary leading-none price-tb-annual">$125</span>
@@ -382,203 +354,37 @@
              </div>
            </div>
           </div>
-          
-          <div class="px-5 pb-3">
+          <div class="px-5 pb-3 flex-1">
            <div class="bg-gradient-to-br from-primary to-[#2C523B] border border-secondary/50 rounded-xl p-4 shadow-md relative overflow-visible mb-3">
-             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Membership Perks</p>
+             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Perks</p>
              <div class="flex items-center gap-3 mb-3 relative z-10">
-  <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm"><i data-lucide="calendar-check" class="w-4 h-4"></i></div>
-               <div><div class="text-[15px] font-bold text-cream leading-tight"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Court Reservations<span class="tooltip-content">Book private courts up to 14 days in advance. Max 4 active, 2 per day.</span></span></div></div>
+               <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm"><i data-lucide="calendar-check" class="w-4 h-4"></i></div>
+               <div><div class="text-[14px] font-bold text-cream leading-tight">Unlimited Court Reservations</div></div>
              </div>
              <div class="flex items-start gap-3 relative z-10">
                <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm mt-0.5"><i data-lucide="infinity" class="w-4 h-4"></i></div>
-               <div><div class="text-[15px] font-bold text-cream leading-tight mt-1"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content">Reserve open play sessions up to 7 days in advance.</span></span></div></div>
+               <div><div class="text-[14px] font-bold text-cream leading-tight mt-1">Unlimited Open Play</div></div>
              </div>
            </div>
-
-           <div class="bg-primary/5 border border-primary/10 rounded-xl p-2.5 mb-3 flex items-center justify-center gap-2">
-             <span class="text-secondary text-base"></span>
-             <span class="text-sm font-bold text-primary">Save 16% ($289) vs monthly</span>
-           </div>
-
           </div>
-          
-          <div class="px-5 pb-5 flex-1 flex flex-col">
-           <button class="mt-auto w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
+          <div class="px-5 pb-5 mt-auto flex flex-col">
+           <button class="w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
           </div>
          </div>
+      </div>
 
-       </div>
-
-       <div id="trailblazer-monthly-cards" class="hidden flex-col md:flex-row gap-6 w-full justify-center">
-         
-         <div class="plan-card founders-border rounded-2xl bg-white/90 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col" style="animation-delay: 0.05s;">
+      <div id="pioneer-annual-cards" class="flex flex-col w-full h-full">
+         <div class="plan-card flex-1 founders-border rounded-2xl bg-white/90 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col mx-auto" style="animation-delay: 0.15s;">
           <div class="p-5 pb-0 flex flex-col">
            <div class="h-6 mb-2">
              <div class="founders-badge text-primary text-xs font-bold px-3 py-1 rounded-full inline-block uppercase tracking-wider">⭐ Founder's Edition</div>
            </div>
            <div class="h-4 mb-3">
-             <div class="limited-pulse text-xs text-secondary font-semibold">Only 100 memberships available</div>
-           </div>
-           <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Trailblazer Monthly <i data-lucide="refresh-cw" class="w-5 h-5 text-secondary"></i></h2>
-           <div class="h-4 mb-3">
-             <p class="text-xs text-primary/50">Founder's Edition</p>
-           </div>
-
-           <div class="h-24 flex flex-col mb-2">
-             <div class="flex items-baseline gap-1 h-8">
-               <span class="text-3xl font-display font-800 text-primary leading-none price-tb-monthly">$140</span>
-               <span class="text-sm text-primary/50">/mo</span>
-             </div>
-             <div class="flex items-center gap-2 mt-1 min-h-[32px]">
-               <span class="line-through text-primary/40 text-xs price-initiation-standard">$70 initiation fee</span>
-               <span class="text-secondary font-bold text-xs price-initiation-founder">$1 initiation fee</span>
-             </div>
-             <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 min-h-[16px]">
-               <a href="#compare-options" onclick="document.getElementById('compare-options').scrollIntoView({ behavior: 'smooth' }); return false;" class="text-xs text-primary font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary/70 transition-colors">More Pricing Info</a>
-             </div>
-           </div>
-          </div>
-          
-          <div class="px-5 pb-3">
-           <div class="bg-gradient-to-br from-primary to-[#2C523B] border border-secondary/50 rounded-xl p-4 shadow-md relative overflow-visible mb-3">
-             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Membership Perks</p>
-             <div class="flex items-center gap-3 mb-3 relative z-10">
-  <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm"><i data-lucide="calendar-check" class="w-4 h-4"></i></div>
-               <div><div class="text-[15px] font-bold text-cream leading-tight"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Court Reservations<span class="tooltip-content">Book private courts up to 14 days in advance. Max 4 active, 2 per day.</span></span></div></div>
-             </div>
-             <div class="flex items-start gap-3 relative z-10">
-               <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm mt-0.5"><i data-lucide="infinity" class="w-4 h-4"></i></div>
-               <div><div class="text-[15px] font-bold text-cream leading-tight mt-1"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content">Reserve open play sessions up to 7 days in advance.</span></span></div></div>
-             </div>
-           </div>
-
-           <div class="bg-secondary/10 border border-secondary/20 rounded-xl p-3 mb-3 relative z-20">
-            <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="gift" class="w-4 h-4"></i> Founder's Bonuses</p>
-            <div class="space-y-1.5 text-xs text-primary/80">
-             <div class="bonus-item">2,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign up (3,000 total)</div>
-             <div class="bonus-item">Exclusive Founder's Edition swag item</div>
-             <div class="bonus-item">1 week early access before grand opening</div>
-             <div class="bonus-item pt-1"><a href="#founders-explanation" onclick="document.getElementById('founders-explanation').scrollIntoView({ behavior: 'smooth' }); return false;" class="font-bold text-primary underline decoration-secondary decoration-2 underline-offset-2 hover:text-primary/70 transition-colors cursor-pointer">Learn more</a></div>
-            </div>
-           </div>
-          </div>
-          
-          <div class="px-5 pb-5 flex-1 flex flex-col">
-           <button class="mt-auto w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
-          </div>
-         </div>
-
-         <div class="plan-card regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col" style="animation-delay: 0.15s;">
-          <div class="p-5 pb-0 flex flex-col">
-           <div class="h-6 mb-2"><div class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full inline-block uppercase tracking-wider">Standard</div></div>
-           <div class="h-4 mb-3"></div>
-           <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Trailblazer Monthly <i data-lucide="refresh-cw" class="w-5 h-5 text-primary/30"></i></h2>
-           <div class="h-4 mb-3"><p class="text-xs text-primary/50">Standard</p></div>
-
-           <div class="h-24 flex flex-col mb-2">
-             <div class="flex items-baseline gap-1 h-8">
-               <span class="text-3xl font-display font-800 text-primary leading-none price-tb-monthly">$140</span>
-               <span class="text-sm text-primary/50">/mo</span>
-             </div>
-             <div class="flex items-center gap-2 mt-1 min-h-[32px]">
-               <span class="text-primary/70 text-xs price-initiation-standard">$70 initiation fee</span>
-             </div>
-             <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 min-h-[16px]">
-               <a href="#compare-options" onclick="document.getElementById('compare-options').scrollIntoView({ behavior: 'smooth' }); return false;" class="text-xs text-primary font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary/70 transition-colors">More Pricing Info</a>
-             </div>
-           </div>
-          </div>
-          
-          <div class="px-5 pb-3">
-           <div class="bg-gradient-to-br from-primary to-[#2C523B] border border-secondary/50 rounded-xl p-4 shadow-md relative overflow-visible mb-3">
-             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Membership Perks</p>
-             <div class="flex items-center gap-3 mb-3 relative z-10">
-  <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm"><i data-lucide="calendar-check" class="w-4 h-4"></i></div>
-               <div><div class="text-[15px] font-bold text-cream leading-tight"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Court Reservations<span class="tooltip-content">Book private courts up to 14 days in advance. Max 4 active, 2 per day.</span></span></div></div>
-             </div>
-             <div class="flex items-start gap-3 relative z-10">
-               <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm mt-0.5"><i data-lucide="infinity" class="w-4 h-4"></i></div>
-               <div><div class="text-[15px] font-bold text-cream leading-tight mt-1"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content">Reserve open play sessions up to 7 days in advance.</span></span></div></div>
-             </div>
-           </div>
-          </div>
-          
-          <div class="px-5 pb-5 flex-1 flex flex-col">
-           <button class="mt-auto w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
-          </div>
-         </div>
-
-       </div>
-     </div>
-     
-     <div class="bg-white/80 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8 mt-10 mb-8 max-w-5xl mx-auto">
-       <h3 class="font-display text-3xl md:text-4xl font-800 text-primary mb-8 text-left">The Trailblazer Membership</h3>
-       
-       <div class="grid md:grid-cols-2 gap-6 mb-10">
-         <div class="bg-[#F4F1EA] border border-primary/20 rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-           <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none"><i data-lucide="calendar-check" class="w-48 h-48 text-primary"></i></div>
-           <div class="bg-primary text-secondary w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm z-10">
-             <i data-lucide="calendar-check" class="w-7 h-7"></i>
-           </div>
-           <h4 class="font-display text-2xl font-bold text-primary mb-3 z-10 leading-tight">Unlimited Court Reservations</h4>
-           <p class="text-primary/80 z-10 text-sm md:text-base leading-relaxed">Book private courts up to 14 days in advance. You can hold a maximum of 4 active reservations at a time, with a limit of 2 per day.</p>
-         </div>
-
-         <div class="bg-[#F4F1EA] border border-primary/20 rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-           <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none"><i data-lucide="infinity" class="w-48 h-48 text-primary"></i></div>
-           <div class="bg-primary text-secondary w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm z-10">
-             <i data-lucide="infinity" class="w-7 h-7"></i>
-           </div>
-           <h4 class="font-display text-2xl font-bold text-primary mb-3 z-10 leading-tight">Unlimited Open Play</h4>
-           <p class="text-primary/80 z-10 text-sm md:text-base leading-relaxed">Join any scheduled open play session with no additional drop-in fees. Reserve your spot up to 7 days in advance.</p>
-         </div>
-       </div>
-
-       <h4 class="font-display text-xl font-bold text-primary mb-2 border-b border-primary/10 pb-2">Additional Benefits</h4>
-       <p class="text-sm text-primary/70 mb-5">These exclusive Frontier member benefits are included for all our members, simply for being part of the Frontier Pickleball community.</p>
-       
-       <div class="benefits-wrapper" id="wrapper-trailblazer">
-         <div class="flex flex-col space-y-4 benefits-container" id="benefits-grid-trailblazer" style="max-height: 380px;">
-         </div>
-         <div class="benefits-fade"></div>
-       </div>
-       <button class="mt-5 w-full py-2.5 rounded-xl border border-primary/20 text-primary font-bold text-sm hover:bg-primary/5 transition-colors flex items-center justify-center gap-2" onclick="toggleBenefits(this, 'wrapper-trailblazer', 'benefits-grid-trailblazer')">
-         <span>Show All Benefits</span> <i data-lucide="chevron-down" class="w-4 h-4"></i>
-       </button>
-       </div>
-    </section>
-
-    <section id="tab-pioneer" class="tab-content" role="tabpanel">
-     <div class="flex flex-col items-center text-center mb-10 max-w-3xl mx-auto px-4">
-  <h2 class="font-display text-3xl md:text-4xl font-800 text-primary mb-3">The Pioneer Membership</h2>
-  <p class="text-base md:text-lg text-primary/70 leading-relaxed max-w-2xl">Unlimited open play and exclusive member benefits.</p>
-</div>
-     <div class="flex justify-center mb-8 relative z-10">
-       <div class="bg-primary/5 p-1 rounded-full border border-primary/10 inline-flex relative shadow-inner">
-         
-         <button id="pioneer-annual-btn" class="relative z-10 px-8 py-2 rounded-full text-sm font-bold text-primary bg-white shadow-sm transition-all" onclick="toggleBilling('pioneer', 'annual')">Annual</button>
-         <button id="pioneer-monthly-btn" class="relative z-10 px-8 py-2 rounded-full text-sm font-bold text-primary/60 hover:text-primary transition-all" onclick="toggleBilling('pioneer', 'monthly')">Monthly</button>
-       </div>
-     </div>
-
-     <div class="flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto px-4 pb-8">
-       
-       <div id="pioneer-annual-cards" class="flex flex-col md:flex-row gap-6 w-full justify-center">
-         
-         <div class="plan-card founders-border rounded-2xl bg-white/90 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col" style="animation-delay: 0.05s;">
-          <div class="p-5 pb-0 flex flex-col">
-           <div class="h-6 mb-2">
-             <div class="founders-badge text-primary text-xs font-bold px-3 py-1 rounded-full inline-block uppercase tracking-wider">⭐ Founder's Edition</div>
-           </div>
-           <div class="h-4 mb-3">
-             <div class="limited-pulse text-xs text-secondary font-semibold">Only 100 memberships available</div>
+             <div class="limited-pulse text-xs text-secondary font-semibold">Only 100 available</div>
            </div>
            <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Pioneer Annual <i data-lucide="calendar" class="w-5 h-5 text-secondary"></i></h2>
-           <div class="h-4 mb-3">
-             <p class="text-xs text-primary/50">Founder's Edition</p>
-           </div>
-
+           <div class="h-4 mb-3"><p class="text-xs text-primary/50">Founder's Edition</p></div>
+           
            <div class="h-24 flex flex-col mb-2">
              <div class="flex items-baseline gap-1 h-8">
                <span class="text-3xl font-display font-800 text-primary leading-none price-pi-annual">$99</span>
@@ -593,45 +399,36 @@
              </div>
            </div>
           </div>
-          
-          <div class="px-5 pb-3">
+          <div class="px-5 pb-3 flex-1">
            <div class="bg-gradient-to-br from-primary to-[#2C523B] border border-secondary/50 rounded-xl p-4 shadow-md relative overflow-visible mb-3">
-             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Membership Perk</p>
+             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Perk</p>
              <div class="flex items-start gap-3 relative z-10">
                <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm mt-0.5"><i data-lucide="infinity" class="w-4 h-4"></i></div>
-               <div><div class="text-[16px] font-bold text-cream leading-tight mt-0.5"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content">Reserve open play sessions up to 7 days in advance.</span></span></div></div>
+               <div><div class="text-[15px] font-bold text-cream leading-tight mt-0.5"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content">Reserve open play sessions up to 7 days in advance.</span></span></div></div>
              </div>
            </div>
-
-           <div class="bg-primary/5 border border-primary/10 rounded-xl p-2.5 mb-3 flex items-center justify-center gap-2">
-             <span class="text-secondary text-base"></span>
-             <span class="text-sm font-bold text-primary">Save 16% ($240) vs monthly</span>
-           </div>
-
            <div class="bg-secondary/10 rounded-xl p-3 mb-3 border border-secondary/20 relative z-20">
             <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="gift" class="w-4 h-4"></i> Founder's Bonuses</p>
             <div class="space-y-1.5 text-xs text-primary/80">
              <div class="bonus-item"><span tabindex="0" class="has-tooltip pb-0.5 border-b border-dotted border-secondary/70"><strong>1 bonus month</strong><span class="tooltip-content founder-shiny-tooltip">Get the 13th month free!</span></span></div>
-             <div class="bonus-item">$60 credit towards merch, food &amp; bev ($5/mo)</div>
-             <div class="bonus-item">1,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign up (2,000 total)</div>
+             <div class="bonus-item">$60 merch & dining credit <em>($5/mo)</em></div>
              <div class="bonus-item">Exclusive Founder's Edition swag item</div>
+             <div class="bonus-item">1,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> <em>(2,000 total)</em></div>
              <div class="bonus-item pt-1"><a href="#founders-explanation" onclick="document.getElementById('founders-explanation').scrollIntoView({ behavior: 'smooth' }); return false;" class="font-bold text-primary underline decoration-secondary decoration-2 underline-offset-2 hover:text-primary/70 transition-colors cursor-pointer">Learn more</a></div>
             </div>
            </div>
           </div>
-          
-          <div class="px-5 pb-5 flex-1 flex flex-col">
-           <button class="mt-auto w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
+          <div class="px-5 pb-5 mt-auto flex flex-col">
+           <button class="w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
           </div>
          </div>
 
-         <div class="plan-card regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col" style="animation-delay: 0.15s;">
+         <div class="plan-card flex-1 regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col mx-auto" style="animation-delay: 0.25s;">
           <div class="p-5 pb-0 flex flex-col">
            <div class="h-6 mb-2"><div class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full inline-block uppercase tracking-wider">Standard</div></div>
            <div class="h-4 mb-3"></div>
            <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Pioneer Annual <i data-lucide="calendar" class="w-5 h-5 text-primary/30"></i></h2>
            <div class="h-4 mb-3"><p class="text-xs text-primary/50">Standard</p></div>
-
            <div class="h-24 flex flex-col mb-2">
              <div class="flex items-baseline gap-1 h-8">
                <span class="text-3xl font-display font-800 text-primary leading-none price-pi-annual">$99</span>
@@ -645,45 +442,175 @@
              </div>
            </div>
           </div>
-          
-          <div class="px-5 pb-3">
+          <div class="px-5 pb-3 flex-1">
            <div class="bg-gradient-to-br from-primary to-[#2C523B] border border-secondary/50 rounded-xl p-4 shadow-md relative overflow-visible mb-3">
-             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Membership Perk</p>
+             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Perk</p>
              <div class="flex items-start gap-3 relative z-10">
                <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm mt-0.5"><i data-lucide="infinity" class="w-4 h-4"></i></div>
-               <div><div class="text-[16px] font-bold text-cream leading-tight mt-0.5"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content">Reserve open play sessions up to 7 days in advance.</span></span></div></div>
+               <div><div class="text-[15px] font-bold text-cream leading-tight mt-0.5">Unlimited Open Play</div></div>
              </div>
            </div>
-
-           <div class="bg-primary/5 border border-primary/10 rounded-xl p-2.5 mb-3 flex items-center justify-center gap-2">
-             <span class="text-secondary text-base"></span>
-             <span class="text-sm font-bold text-primary">Save 16% ($240) vs monthly</span>
-           </div>
-
           </div>
-          
-          <div class="px-5 pb-5 flex-1 flex flex-col">
-           <button class="mt-auto w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
+          <div class="px-5 pb-5 mt-auto flex flex-col">
+           <button class="w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
           </div>
          </div>
+      </div>
 
-       </div>
-
-       <div id="pioneer-monthly-cards" class="hidden flex-col md:flex-row gap-6 w-full justify-center">
+      <div class="flex flex-col w-full h-full">
+        <div class="plan-card flex-1 regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col mx-auto" style="animation-delay: 0.25s;">
+         <div class="p-5 pb-0 flex flex-col">
+          <div class="h-6 mb-2"></div>
+          <div class="h-4 mb-3"></div>
+          <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Explorer <i data-lucide="compass" class="w-5 h-5 text-primary/30"></i></h2>
+          <div class="h-4 mb-3">
+            <p class="text-xs text-primary/50">Guest Account</p>
+          </div>
+          <div class="h-24 flex flex-col mb-2">
+            <div class="flex items-baseline gap-1 h-8">
+              <span class="text-3xl font-display font-800 text-primary leading-none">Free</span>
+            </div>
+            <div class="flex items-center gap-2 mt-1 min-h-[32px]">
+              <span class="text-primary/70 text-xs">Every great expedition begins at basecamp.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 min-h-[16px]"></div>
+          </div>
+         </div>
          
-         <div class="plan-card founders-border rounded-2xl bg-white/90 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col" style="animation-delay: 0.05s;">
+         <div class="px-5 pb-3 flex-2">
+           <div class="bg-primary/5 border border-primary/10 rounded-xl p-4 shadow-sm relative overflow-hidden mb-3 h-full">
+             <p class="text-xs font-bold text-primary/60 uppercase tracking-widest mb-3">Pay As You Play</p>
+             <ul class="space-y-3 text-sm text-primary/80">
+               <li class="flex items-start gap-2.5">
+                 <i data-lucide="ticket" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                 <span class="leading-tight font-bold">$40 All Day Open Play Pass</span>
+               </li>
+               <li class="flex items-start gap-2.5">
+                 <i data-lucide="clock" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                 <span class="leading-tight font-bold">$15/hr Court Reservations</span>
+               </li>
+               <li class="flex items-start gap-2.5 border-t border-primary/10 pt-2.5">
+                 <i data-lucide="info" class="w-4 h-4 text-primary/40 mt-0.5 shrink-0"></i>
+                 <span class="leading-tight text-[13px] text-primary/70">Full retail price for all drop-ins, bookings, and club offerings.</span>
+                 <li class="flex items-start gap-2.5">
+               </li>
+             </ul>
+           </div>
+         </div>
+         <div class="px-5 pb-5 mt-auto flex flex-col">
+          <button class="w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Create Account</button>
+         </div>
+        </div>
+        <div class="w-full flex justify-center mt-4 invisible" aria-hidden="true">
+          <button class="text-sm font-bold">Spacer</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="master-monthly-container" class="hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 pb-12 transition-all">
+      
+      <div id="trailblazer-monthly-cards" class="flex flex-col w-full h-full">
+         <div class="plan-card flex-1 founders-border rounded-2xl bg-white/90 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col mx-auto" style="animation-delay: 0.05s;">
           <div class="p-5 pb-0 flex flex-col">
            <div class="h-6 mb-2">
              <div class="founders-badge text-primary text-xs font-bold px-3 py-1 rounded-full inline-block uppercase tracking-wider">⭐ Founder's Edition</div>
            </div>
            <div class="h-4 mb-3">
-             <div class="limited-pulse text-xs text-secondary font-semibold">Only 100 memberships available</div>
+             <div class="limited-pulse text-xs text-secondary font-semibold">Only 100 available</div>
+           </div>
+           <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Trailblazer Monthly <i data-lucide="refresh-cw" class="w-5 h-5 text-secondary"></i></h2>
+           <div class="h-4 mb-3"><p class="text-xs text-primary/50">Founder's Edition</p></div>
+           
+           <div class="h-24 flex flex-col mb-2">
+             <div class="flex items-baseline gap-1 h-8">
+               <span class="text-3xl font-display font-800 text-primary leading-none price-tb-monthly">$140</span>
+               <span class="text-sm text-primary/50">/mo</span>
+             </div>
+             <div class="flex items-center gap-2 mt-1 min-h-[32px]">
+               <span class="line-through text-primary/40 text-xs price-initiation-standard">$70 initiation fee</span>
+               <span class="text-secondary font-bold text-xs price-initiation-founder">$1 initiation fee</span>
+             </div>
+             <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 min-h-[16px]">
+               <a href="#compare-options" onclick="document.getElementById('compare-options').scrollIntoView({ behavior: 'smooth' }); return false;" class="text-xs text-primary font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary/70 transition-colors">More Pricing Info</a>
+             </div>
+           </div>
+          </div>
+          <div class="px-5 pb-3 flex-1">
+           <div class="bg-gradient-to-br from-primary to-[#2C523B] border border-secondary/50 rounded-xl p-4 shadow-md relative overflow-visible mb-3">
+             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Perks</p>
+             <div class="flex items-center gap-3 mb-3 relative z-10">
+               <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm"><i data-lucide="calendar-check" class="w-4 h-4"></i></div>
+               <div><div class="text-[14px] font-bold text-cream leading-tight">Unlimited Court Reservations</div></div>
+             </div>
+             <div class="flex items-start gap-3 relative z-10">
+               <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm mt-0.5"><i data-lucide="infinity" class="w-4 h-4"></i></div>
+               <div><div class="text-[14px] font-bold text-cream leading-tight mt-1">Unlimited Open Play</div></div>
+             </div>
+           </div>
+           <div class="bg-secondary/10 border border-secondary/20 rounded-xl p-3 mb-3 relative z-20">
+            <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="gift" class="w-4 h-4"></i> Founder's Bonuses</p>
+            <div class="space-y-1.5 text-xs text-primary/80">
+             <div class="bonus-item">2,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points </a><em>(3,000 total)</em></div>
+             <div class="bonus-item pt-1"><a href="#founders-explanation" onclick="document.getElementById('founders-explanation').scrollIntoView({ behavior: 'smooth' }); return false;" class="font-bold text-primary underline decoration-secondary decoration-2 underline-offset-2 hover:text-primary/70 transition-colors cursor-pointer">Learn more</a></div>
+            </div>
+           </div>
+          </div>
+          <div class="px-5 pb-5 mt-auto flex flex-col">
+           <button class="w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
+          </div>
+         </div>
+
+         <div class="plan-card flex-1 regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col mx-auto" style="animation-delay: 0.15s;">
+          <div class="p-5 pb-0 flex flex-col">
+           <div class="h-6 mb-2"><div class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full inline-block uppercase tracking-wider">Standard</div></div>
+           <div class="h-4 mb-3"></div>
+           <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Trailblazer Monthly <i data-lucide="refresh-cw" class="w-5 h-5 text-primary/30"></i></h2>
+           <div class="h-4 mb-3"><p class="text-xs text-primary/50">Standard</p></div>
+           <div class="h-24 flex flex-col mb-2">
+             <div class="flex items-baseline gap-1 h-8">
+               <span class="text-3xl font-display font-800 text-primary leading-none price-tb-monthly">$140</span>
+               <span class="text-sm text-primary/50">/mo</span>
+             </div>
+             <div class="flex items-center gap-2 mt-1 min-h-[32px]">
+               <span class="text-primary/70 text-xs price-initiation-standard">$70 initiation fee</span>
+             </div>
+             <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 min-h-[16px]">
+               <a href="#compare-options" onclick="document.getElementById('compare-options').scrollIntoView({ behavior: 'smooth' }); return false;" class="text-xs text-primary font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary/70 transition-colors">More Pricing Info</a>
+             </div>
+           </div>
+          </div>
+          <div class="px-5 pb-3 flex-1">
+           <div class="bg-gradient-to-br from-primary to-[#2C523B] border border-secondary/50 rounded-xl p-4 shadow-md relative overflow-visible mb-3">
+             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Perks</p>
+             <div class="flex items-center gap-3 mb-3 relative z-10">
+               <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm"><i data-lucide="calendar-check" class="w-4 h-4"></i></div>
+               <div><div class="text-[14px] font-bold text-cream leading-tight">Unlimited Court Reservations</div></div>
+             </div>
+             <div class="flex items-start gap-3 relative z-10">
+               <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm mt-0.5"><i data-lucide="infinity" class="w-4 h-4"></i></div>
+               <div><div class="text-[14px] font-bold text-cream leading-tight mt-1">Unlimited Open Play</div></div>
+             </div>
+           </div>
+          </div>
+          <div class="px-5 pb-5 mt-auto flex flex-col">
+           <button class="w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
+          </div>
+         </div>
+      </div>
+
+      <div id="pioneer-monthly-cards" class="flex flex-col w-full h-full">
+         <div class="plan-card flex-1 founders-border rounded-2xl bg-white/90 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col mx-auto" style="animation-delay: 0.15s;">
+          <div class="p-5 pb-0 flex flex-col">
+           <div class="h-6 mb-2">
+             <div class="founders-badge text-primary text-xs font-bold px-3 py-1 rounded-full inline-block uppercase tracking-wider">⭐ Founder's Edition</div>
+           </div>
+           <div class="h-4 mb-3">
+             <div class="limited-pulse text-xs text-secondary font-semibold">Only 100 available</div>
            </div>
            <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Pioneer Monthly <i data-lucide="refresh-cw" class="w-5 h-5 text-secondary"></i></h2>
-           <div class="h-4 mb-3">
-             <p class="text-xs text-primary/50">Founder's Edition</p>
-           </div>
-
+           <div class="h-4 mb-3"><p class="text-xs text-primary/50">Founder's Edition</p></div>
+           
            <div class="h-24 flex flex-col mb-2">
              <div class="flex items-baseline gap-1 h-8">
                <span class="text-3xl font-display font-800 text-primary leading-none price-pi-monthly">$115</span>
@@ -698,38 +625,33 @@
              </div>
            </div>
           </div>
-          
-          <div class="px-5 pb-3">
+          <div class="px-5 pb-3 flex-1">
            <div class="bg-gradient-to-br from-primary to-[#2C523B] border border-secondary/50 rounded-xl p-4 shadow-md relative overflow-visible mb-3">
-             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Membership Perk</p>
+             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Perk</p>
              <div class="flex items-start gap-3 relative z-10">
                <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm mt-0.5"><i data-lucide="infinity" class="w-4 h-4"></i></div>
-               <div><div class="text-[16px] font-bold text-cream leading-tight mt-0.5"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content">Reserve open play sessions up to 7 days in advance.</span></span></div></div>
+               <div><div class="text-[15px] font-bold text-cream leading-tight mt-0.5">Unlimited Open Play</div></div>
              </div>
            </div>
-
            <div class="bg-secondary/10 rounded-xl p-3 mb-3 border border-secondary/20 relative z-20">
             <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="gift" class="w-4 h-4"></i> Founder's Bonuses</p>
             <div class="space-y-1.5 text-xs text-primary/80">
-             <div class="bonus-item">1,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign up (2,000 total)</div>
-             <div class="bonus-item">Exclusive Founder's Edition swag item</div>
+             <div class="bonus-item">1,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-1 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> <em>(2,000 total)</em></div>
              <div class="bonus-item pt-1"><a href="#founders-explanation" onclick="document.getElementById('founders-explanation').scrollIntoView({ behavior: 'smooth' }); return false;" class="font-bold text-primary underline decoration-secondary decoration-2 underline-offset-2 hover:text-primary/70 transition-colors cursor-pointer">Learn more</a></div>
             </div>
            </div>
           </div>
-          
-          <div class="px-5 pb-5 flex-1 flex flex-col">
-           <button class="mt-auto w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
+          <div class="px-5 pb-5 mt-auto flex flex-col">
+           <button class="w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
           </div>
          </div>
 
-         <div class="plan-card regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col" style="animation-delay: 0.15s;">
+         <div class="plan-card flex-1 regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col mx-auto" style="animation-delay: 0.25s;">
           <div class="p-5 pb-0 flex flex-col">
            <div class="h-6 mb-2"><div class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full inline-block uppercase tracking-wider">Standard</div></div>
            <div class="h-4 mb-3"></div>
            <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Pioneer Monthly <i data-lucide="refresh-cw" class="w-5 h-5 text-primary/30"></i></h2>
            <div class="h-4 mb-3"><p class="text-xs text-primary/50">Standard</p></div>
-
            <div class="h-24 flex flex-col mb-2">
              <div class="flex items-baseline gap-1 h-8">
                <span class="text-3xl font-display font-800 text-primary leading-none price-pi-monthly">$115</span>
@@ -743,123 +665,161 @@
              </div>
            </div>
           </div>
-          
-          <div class="px-5 pb-3">
+          <div class="px-5 pb-3 flex-1">
            <div class="bg-gradient-to-br from-primary to-[#2C523B] border border-secondary/50 rounded-xl p-4 shadow-md relative overflow-visible mb-3">
-             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Membership Perk</p>
+             <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-3 opacity-90">Core Perk</p>
              <div class="flex items-start gap-3 relative z-10">
                <div class="bg-secondary text-primary rounded-full p-1.5 shadow-sm mt-0.5"><i data-lucide="infinity" class="w-4 h-4"></i></div>
-               <div><div class="text-[16px] font-bold text-cream leading-tight mt-0.5"><span tabindex="0" class="has-tooltip pb-0.5">Unlimited Open Play<span class="tooltip-content">Reserve open play sessions up to 7 days in advance.</span></span></div></div>
+               <div><div class="text-[15px] font-bold text-cream leading-tight mt-0.5">Unlimited Open Play</div></div>
              </div>
            </div>
           </div>
-          
-          <div class="px-5 pb-5 flex-1 flex flex-col">
-           <button class="mt-auto w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
+          <div class="px-5 pb-5 mt-auto flex flex-col">
+           <button class="w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Select Membership</button>
           </div>
          </div>
+      </div>
 
-       </div>
-     </div>
-     
-     <div class="bg-white/80 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8 mt-10 mb-8 max-w-5xl mx-auto">
-       <h3 class="font-display text-3xl md:text-4xl font-800 text-primary mb-8 text-left">The Pioneer Membership</h3>
-       
-       <div class="mb-10">
-         <div class="bg-[#F4F1EA] border border-primary/20 rounded-2xl p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 relative overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-           <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none"><i data-lucide="infinity" class="w-48 h-48 text-primary"></i></div>
-           <div class="bg-primary text-secondary w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm z-10 shrink-0">
-             <i data-lucide="infinity" class="w-8 h-8"></i>
-           </div>
-           <div class="z-10">
-             <h4 class="font-display text-2xl font-bold text-primary mb-2 leading-tight">Unlimited Open Play</h4>
-             <p class="text-primary/80 text-sm md:text-base leading-relaxed max-w-2xl">Join any scheduled open play session with no additional drop-in fees. Reserve your spot up to 7 days in advance.</p>
-           </div>
-         </div>
-       </div>
-
-       <h4 class="font-display text-xl font-bold text-primary mb-2 border-b border-primary/10 pb-2">Additional Benefits</h4>
-       <p class="text-sm text-primary/70 mb-5">These exclusive Frontier member benefits are included for all our members, simply for being part of the Frontier Pickleball community.</p>
-       
-       <div class="benefits-wrapper" id="wrapper-pioneer">
-         <div class="flex flex-col space-y-4 benefits-container" id="benefits-grid-pioneer" style="max-height: 380px;">
-         </div>
-         <div class="benefits-fade"></div>
-       </div>
-       <button class="mt-5 w-full py-2.5 rounded-xl border border-primary/20 text-primary font-bold text-sm hover:bg-primary/5 transition-colors flex items-center justify-center gap-2" onclick="toggleBenefits(this, 'wrapper-pioneer', 'benefits-grid-pioneer')">
-         <span>Show All Benefits</span> <i data-lucide="chevron-down" class="w-4 h-4"></i>
-       </button>
-       </div>
-    </section>
-
-    <section id="tab-explorer" class="tab-content" role="tabpanel">
-     <div class="flex flex-col items-center text-center mb-8 max-w-3xl mx-auto px-4">
-  <h2 class="font-display text-3xl md:text-4xl font-800 text-primary mb-3">The Explorer Account</h2>
-  <p class="text-base md:text-lg text-primary/70 leading-relaxed max-w-2xl">The best way to start your journey.</p>
-</div>
-     
-     <div class="flex justify-center px-4 pt-2 pb-6">
-       
-       <div class="plan-card regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full max-w-md flex flex-col">
-        <div class="p-6 pb-0 flex flex-col">
-         <div class="h-6 mb-2"></div>
-         <div class="h-4 mb-3"></div>
-         <h2 class="font-display text-2xl font-bold text-primary mb-1 h-7">Explorer</h2>
-         <div class="h-4 mb-3">
-           <p class="text-xs text-primary/50">Guest Account</p>
+      <div class="flex flex-col w-full h-full">
+        <div class="plan-card flex-1 regular-border rounded-2xl bg-white/80 backdrop-blur-sm w-full md:max-w-[340px] flex flex-col mx-auto" style="animation-delay: 0.25s;">
+         <div class="p-5 pb-0 flex flex-col">
+          <div class="h-6 mb-2"></div>
+          <div class="h-4 mb-3"></div>
+          <h2 class="font-display text-xl font-bold text-primary mb-1 h-7 flex items-center justify-between">Explorer <i data-lucide="compass" class="w-5 h-5 text-primary/30"></i></h2>
+          <div class="h-4 mb-3">
+            <p class="text-xs text-primary/50">Guest Account</p>
+          </div>
+          <div class="h-24 flex flex-col mb-2">
+            <div class="flex items-baseline gap-1 h-8">
+              <span class="text-3xl font-display font-800 text-primary leading-none">Free</span>
+            </div>
+            <div class="flex items-center gap-2 mt-1 min-h-[32px]">
+              <span class="text-primary/70 text-xs">Every great expedition begins at basecamp.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 min-h-[16px]"></div>
+          </div>
          </div>
          
-         <div class="h-24 flex flex-col mb-2">
-           <div class="flex items-baseline gap-1 h-8">
-             <span class="text-4xl font-display font-800 text-primary leading-none">Free</span>
+         <div class="px-5 pb-3 flex-2">
+           <div class="bg-primary/5 border border-primary/10 rounded-xl p-4 shadow-sm relative overflow-hidden mb-3 h-full">
+             <p class="text-xs font-bold text-primary/60 uppercase tracking-widest mb-3">Pay As You Play</p>
+             <ul class="space-y-3 text-sm text-primary/80">
+               <li class="flex items-start gap-2.5">
+                 <i data-lucide="ticket" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                 <span class="leading-tight font-bold">$40 All Day Open Play Pass</span>
+               </li>
+               <li class="flex items-start gap-2.5">
+                 <i data-lucide="clock" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                 <span class="leading-tight font-bold">$15/hr Court Reservations</span>
+               </li>
+               <li class="flex items-start gap-2.5 border-t border-primary/10 pt-2.5">
+                 <i data-lucide="info" class="w-4 h-4 text-primary/40 mt-0.5 shrink-0"></i>
+                 <span class="leading-tight text-[13px] text-primary/70">Full retail price for all drop-ins, bookings, and club offerings.</span>
+               </li>
+             </ul>
            </div>
-           <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 min-h-[32px]">
-           </div>
-           <div class="flex items-center gap-2 mt-1 min-h-[16px]">
-             <span class="text-primary/70 text-sm">Account required for all facility access</span>
-           </div>
+         </div>
+
+         <div class="px-5 pb-5 mt-auto flex flex-col">
+          <button class="w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3 rounded-xl transition-colors text-sm shadow-sm" onclick="showDemoToast()">Create Account</button>
          </div>
         </div>
-        
-        <div class="px-6 pb-6 flex-1 flex flex-col">
-         <button class="mt-auto pt-2 w-full bg-primary hover:bg-primary/90 text-cream font-body font-600 py-3.5 rounded-xl transition-colors text-sm shadow-md" onclick="showDemoToast()">Create Account</button>
+        <div class="w-full flex justify-center mt-4 invisible" aria-hidden="true">
+          <button class="text-sm font-bold">Spacer</button>
         </div>
-       </div>
+      </div>
+    </div>
 
-     </div>
-     
-     <div class="bg-white/80 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8 mt-6 mb-8 max-w-3xl mx-auto">
-       <h3 class="font-display text-2xl font-bold text-primary mb-6 text-center">Explorer Account Details</h3>
-       
-       <div class="text-sm text-primary/80 mb-8 leading-relaxed max-w-2xl mx-auto space-y-6">
-         <div>
-           <h4 class="font-display text-lg font-bold text-primary mb-2">What's an "Explorer"?</h4>
-           <p>Every great expedition begins at basecamp. Think of Explorer as your passport to the frontier—perfect if you’re just curious about pickleball or gearing up for your first adventure. Stay as long as you need, and when you’re ready to hit the courts more often, you can upgrade to a <a href="#" onclick="switchTab('trailblazer'); window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="text-primary font-bold underline decoration-secondary decoration-2 underline-offset-4 hover:text-primary/80 transition-colors">membership</a> at anytime.</p>
-         </div>
+    <div id="membership-details" class="max-w-5xl mx-auto px-4 mt-12 mb-8">
+      <div class="text-center mb-8">
+        <h3 class="font-display text-3xl md:text-4xl font-800 text-primary mb-3">Membership Details & Benefits</h3>
+        <p class="text-base md:text-lg text-primary/70 leading-relaxed max-w-2xl mx-auto">Discover the exclusive benefits and features included in each membership.</p>
+      </div>
 
-         <div>
-           <h4 class="font-display text-lg font-bold text-primary mb-3">What you can do with an Explorer account</h4>
-           <ul class="space-y-2 mb-3">
-             <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i> <span>Book a court for you and your fellow Explorers</span></li>
-             <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i> <span>Purchase an <span tabindex="0" class="has-tooltip pb-0.5">Explorer Pass<span class="tooltip-content">All day Open Play pass</span></span></span></li>
-             <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i> <span>Sign waivers once and go</span></li>
-             <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i> <span>RSVP for events & clinics and get schedule updates</span></li>
-             <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i> <span>Manage your profile & payments in one place</span></li>
-           </ul>
-           <p class="font-bold text-primary bg-secondary/10 inline-block px-3 py-1 rounded-md mt-2">Free to create. You only pay for what you play.</p>
-         </div>
+      <nav class="flex justify-center items-center gap-2 mb-8" role="tablist" aria-label="Membership benefits">
+        <button class="tab-btn active px-5 py-3 text-sm md:text-base font-body rounded-lg text-primary" role="tab" aria-selected="true" data-tab="trailblazer" onclick="switchTab('trailblazer')"> 🏔️ Trailblazer </button> 
+        <button class="tab-btn px-5 py-3 text-sm md:text-base font-body rounded-lg text-primary/50" role="tab" aria-selected="false" data-tab="pioneer" onclick="switchTab('pioneer')"> 🧭 Pioneer </button> 
+        <div class="w-[2px] h-8 bg-primary/10 mx-2 rounded-full"></div>
+        <button class="tab-btn explorer-tab px-5 py-3 text-sm md:text-base font-body rounded-lg text-primary/50" role="tab" aria-selected="false" data-tab="explorer" onclick="switchTab('explorer')"> 🌿 Explorer </button>
+      </nav>
 
-         <div class="bg-primary/5 p-4 rounded-xl border border-primary/10 mt-2">
-           <h4 class="font-display text-lg font-bold text-primary mb-1">Already a member?</h4>
-           <p>If you’ve purchased a Trailblazer or Pioneer membership, you’re all set—no need to create an Explorer account. Your membership includes account access and booking privileges out of the box.</p>
-         </div>
-       </div>
+      <section id="tab-trailblazer" class="tab-content active bg-white/80 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8" role="tabpanel">
+        <h3 class="font-display text-2xl md:text-3xl font-800 text-primary mb-8 text-left">The Trailblazer Membership</h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+          <div class="bg-[#F4F1EA] border border-primary/20 rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none"><i data-lucide="calendar-check" class="w-48 h-48 text-primary"></i></div>
+            <div class="bg-primary text-secondary w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm z-10"><i data-lucide="calendar-check" class="w-7 h-7"></i></div>
+            <h4 class="font-display text-2xl font-bold text-primary mb-3 z-10 leading-tight">Unlimited Court Reservations</h4>
+            <p class="text-primary/80 z-10 text-sm md:text-base leading-relaxed">Book private courts up to 14 days in advance. You can hold a maximum of 4 active reservations at a time, with a limit of 2 per day.</p>
+          </div>
+          <div class="bg-[#F4F1EA] border border-primary/20 rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none"><i data-lucide="infinity" class="w-48 h-48 text-primary"></i></div>
+            <div class="bg-primary text-secondary w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm z-10"><i data-lucide="infinity" class="w-7 h-7"></i></div>
+            <h4 class="font-display text-2xl font-bold text-primary mb-3 z-10 leading-tight">Unlimited Open Play</h4>
+            <p class="text-primary/80 z-10 text-sm md:text-base leading-relaxed">Join any scheduled open play session with no additional drop-in fees. Reserve your spot up to 7 days in advance.</p>
+          </div>
+        </div>
+        <h4 class="font-display text-xl font-bold text-primary mb-2 border-b border-primary/10 pb-2">Additional Benefits</h4>
+        <p class="text-sm text-primary/70 mb-5">These exclusive Frontier member benefits are included for all our members, simply for being part of the Frontier Pickleball community.</p>
+        <div class="benefits-wrapper" id="wrapper-trailblazer">
+          <div class="flex flex-col space-y-4 benefits-container" id="benefits-grid-trailblazer" style="max-height: 380px;"></div>
+          <div class="benefits-fade"></div>
+        </div>
+        <button class="mt-5 w-full py-2.5 rounded-xl border border-primary/20 text-primary font-bold text-sm hover:bg-primary/5 transition-colors flex items-center justify-center gap-2" onclick="toggleBenefits(this, 'wrapper-trailblazer', 'benefits-grid-trailblazer')">
+          <span>Show All Benefits</span> <i data-lucide="chevron-down" class="w-4 h-4"></i>
+        </button>
+      </section>
 
-       <h4 class="font-display text-xl font-bold text-primary mb-4 border-b border-primary/10 pb-2">Explorer Features</h4>
-       <div class="flex flex-col space-y-4" id="benefits-grid-explorer">
-       </div>
-     </div>
-    </section>
+      <section id="tab-pioneer" class="tab-content bg-white/80 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8" role="tabpanel">
+        <h3 class="font-display text-2xl md:text-3xl font-800 text-primary mb-8 text-left">The Pioneer Membership</h3>
+        <div class="mb-10">
+          <div class="bg-[#F4F1EA] border border-primary/20 rounded-2xl p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 relative overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none"><i data-lucide="infinity" class="w-48 h-48 text-primary"></i></div>
+            <div class="bg-primary text-secondary w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm z-10 shrink-0"><i data-lucide="infinity" class="w-8 h-8"></i></div>
+            <div class="z-10">
+              <h4 class="font-display text-2xl font-bold text-primary mb-2 leading-tight">Unlimited Open Play</h4>
+              <p class="text-primary/80 text-sm md:text-base leading-relaxed max-w-2xl">Join any scheduled open play session with no additional drop-in fees. Reserve your spot up to 7 days in advance.</p>
+            </div>
+          </div>
+        </div>
+        <h4 class="font-display text-xl font-bold text-primary mb-2 border-b border-primary/10 pb-2">Additional Benefits</h4>
+        <p class="text-sm text-primary/70 mb-5">These exclusive Frontier member benefits are included for all our members, simply for being part of the Frontier Pickleball community.</p>
+        <div class="benefits-wrapper" id="wrapper-pioneer">
+          <div class="flex flex-col space-y-4 benefits-container" id="benefits-grid-pioneer" style="max-height: 380px;"></div>
+          <div class="benefits-fade"></div>
+        </div>
+        <button class="mt-5 w-full py-2.5 rounded-xl border border-primary/20 text-primary font-bold text-sm hover:bg-primary/5 transition-colors flex items-center justify-center gap-2" onclick="toggleBenefits(this, 'wrapper-pioneer', 'benefits-grid-pioneer')">
+          <span>Show All Benefits</span> <i data-lucide="chevron-down" class="w-4 h-4"></i>
+        </button>
+      </section>
+
+      <section id="tab-explorer" class="tab-content bg-white/80 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8" role="tabpanel">
+        <h3 class="font-display text-2xl md:text-3xl font-800 text-primary mb-8 text-left">Explorer Account</h3>
+        <div class="text-sm text-primary/80 mb-8 leading-relaxed space-y-6">
+          <div>
+            <h4 class="font-display text-lg font-bold text-primary mb-2">What's an "Explorer" Account?</h4>
+            <p>Every great expedition begins at basecamp. Think of Explorer as your passport to the frontier—perfect if you’re just curious about pickleball or gearing up for your first adventure. Stay as long as you need, and when you’re ready to hit the courts more often, you can upgrade to a <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="text-primary font-bold underline decoration-secondary decoration-2 underline-offset-4 hover:text-primary/80 transition-colors">membership</a> at anytime.</p>
+          </div>
+          <div>
+            <h4 class="font-display text-lg font-bold text-primary mb-3">What you can do with an Explorer account</h4>
+            <ul class="space-y-2 mb-3">
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i> <span>Book a court for you and your fellow Explorers</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i> <span>Purchase an <span tabindex="0" class="has-tooltip pb-0.5">Explorer Pass<span class="tooltip-content">All day Open Play pass</span></span></span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i> <span>Sign waivers once and go</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i> <span>RSVP for events & clinics and get schedule updates</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i> <span>Manage your profile & payments in one place</span></li>
+            </ul>
+            <p class="font-bold text-primary bg-secondary/10 inline-block px-3 py-1 rounded-md mt-2">Free to create. You only pay for what you play.</p>
+          </div>
+          <div class="bg-primary/5 p-4 rounded-xl border border-primary/10 mt-2">
+            <h4 class="font-display text-lg font-bold text-primary mb-1">Already a member?</h4>
+            <p>If you’ve purchased a Trailblazer or Pioneer membership, you’re all set—no need to create an Explorer account. Your membership includes account access and booking privileges out of the box.</p>
+          </div>
+        </div>
+        <h4 class="font-display text-xl font-bold text-primary mb-4 border-b border-primary/10 pb-2">Explorer Features</h4>
+        <div class="flex flex-col space-y-4" id="benefits-grid-explorer"></div>
+      </section>
+    </div>
 
 <section class="max-w-5xl mx-auto mt-12 bg-white/60 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8 mb-8">
       <h3 class="font-display text-2xl font-bold text-primary mb-6 text-center">Which membership is right for you?</h3>
@@ -903,7 +863,7 @@
           <p class="text-primary font-bold text-2xl mb-2">You're a Trailblazer!</p>
           <p class="text-primary/70 text-sm mb-6 max-w-md">The Trailblazer Annual membership gives you unlimited reservations and open play, our best value.</p>
           <div class="flex flex-col sm:flex-row items-center gap-4">
-            <button onclick="switchTab('trailblazer'); toggleBilling('trailblazer', 'annual'); window.scrollTo({top: 0, behavior: 'smooth'});" class="px-6 py-2.5 bg-secondary text-primary rounded-xl font-bold hover:bg-secondary/90 transition-colors shadow-sm">View Annual Plan</button>
+            <button onclick="switchTab('trailblazer'); toggleBilling('trailblazer', 'annual'); document.getElementById('membership-details').scrollIntoView({behavior: 'smooth', block: 'start'});" class="px-6 py-2.5 bg-secondary text-primary rounded-xl font-bold hover:bg-secondary/90 transition-colors shadow-sm">View Annual Plan</button>
             <button onclick="resetQuiz()" class="text-sm font-bold text-primary/50 hover:text-primary underline underline-offset-2 transition-colors">Start Over</button>
           </div>
         </div>
@@ -913,7 +873,7 @@
           <p class="text-primary font-bold text-2xl mb-2">You're a Trailblazer!</p>
           <p class="text-primary/70 text-sm mb-6 max-w-md">Unlimited reservations and open play, with month-to-month flexibility.</p>
           <div class="flex flex-col sm:flex-row items-center gap-4">
-            <button onclick="switchTab('trailblazer'); toggleBilling('trailblazer', 'monthly'); window.scrollTo({top: 0, behavior: 'smooth'});" class="px-6 py-2.5 bg-secondary text-primary rounded-xl font-bold hover:bg-secondary/90 transition-colors shadow-sm">View Monthly Plan</button>
+            <button onclick="switchTab('trailblazer'); toggleBilling('trailblazer', 'monthly'); document.getElementById('membership-details').scrollIntoView({behavior: 'smooth', block: 'start'});" class="px-6 py-2.5 bg-secondary text-primary rounded-xl font-bold hover:bg-secondary/90 transition-colors shadow-sm">View Monthly Plan</button>
             <button onclick="resetQuiz()" class="text-sm font-bold text-primary/50 hover:text-primary underline underline-offset-2 transition-colors">Start Over</button>
           </div>
         </div>
@@ -923,7 +883,7 @@
           <p class="text-primary font-bold text-2xl mb-2">Become a Pioneer!</p>
           <p class="text-primary/70 text-sm mb-6 max-w-md">Unlimited open play access with our best long-term value and savings.</p>
           <div class="flex flex-col sm:flex-row items-center gap-4">
-            <button onclick="switchTab('pioneer'); toggleBilling('pioneer', 'annual'); window.scrollTo({top: 0, behavior: 'smooth'});" class="px-6 py-2.5 bg-secondary text-primary rounded-xl font-bold hover:bg-secondary/90 transition-colors shadow-sm">View Annual Plan</button>
+            <button onclick="switchTab('pioneer'); toggleBilling('pioneer', 'annual'); document.getElementById('membership-details').scrollIntoView({behavior: 'smooth', block: 'start'});" class="px-6 py-2.5 bg-secondary text-primary rounded-xl font-bold hover:bg-secondary/90 transition-colors shadow-sm">View Annual Plan</button>
             <button onclick="resetQuiz()" class="text-sm font-bold text-primary/50 hover:text-primary underline underline-offset-2 transition-colors">Start Over</button>
           </div>
         </div>
@@ -933,7 +893,7 @@
           <p class="text-primary font-bold text-2xl mb-2">Become a Pioneer!</p>
           <p class="text-primary/70 text-sm mb-6 max-w-md">Unlimited open play access with month-to-month flexibility.</p>
           <div class="flex flex-col sm:flex-row items-center gap-4">
-            <button onclick="switchTab('pioneer'); toggleBilling('pioneer', 'monthly'); window.scrollTo({top: 0, behavior: 'smooth'});" class="px-6 py-2.5 bg-secondary text-primary rounded-xl font-bold hover:bg-secondary/90 transition-colors shadow-sm">View Monthly Plan</button>
+            <button onclick="switchTab('pioneer'); toggleBilling('pioneer', 'monthly'); document.getElementById('membership-details').scrollIntoView({behavior: 'smooth', block: 'start'});" class="px-6 py-2.5 bg-secondary text-primary rounded-xl font-bold hover:bg-secondary/90 transition-colors shadow-sm">View Monthly Plan</button>
             <button onclick="resetQuiz()" class="text-sm font-bold text-primary/50 hover:text-primary underline underline-offset-2 transition-colors">Start Over</button>
           </div>
         </div>
@@ -943,7 +903,7 @@
           <p class="text-primary font-bold text-2xl mb-2">You're an Explorer!</p>
           <p class="text-primary/70 text-sm mb-6 max-w-md">Start your journey with a free Explorer account. You only pay for what you play, and you can upgrade anytime.</p>
           <div class="flex flex-col sm:flex-row items-center gap-4">
-            <button onclick="switchTab('explorer'); window.scrollTo({top: 0, behavior: 'smooth'});" class="px-6 py-2.5 bg-secondary text-primary rounded-xl font-bold hover:bg-secondary/90 transition-colors shadow-sm">Create Free Account</button>
+            <button onclick="switchTab('explorer'); document.getElementById('membership-details').scrollIntoView({behavior: 'smooth', block: 'start'});" class="px-6 py-2.5 bg-secondary text-primary rounded-xl font-bold hover:bg-secondary/90 transition-colors shadow-sm">Create Free Account</button>
             <button onclick="resetQuiz()" class="text-sm font-bold text-primary/50 hover:text-primary underline underline-offset-2 transition-colors">Start Over</button>
           </div>
         </div>
@@ -1105,7 +1065,7 @@
           <ul class="text-sm text-primary/80 space-y-4">
             <li class="flex items-start gap-3 pl-2"><span class="text-secondary mt-0.5 text-base">🔑</span> <div><strong>Early Access:</strong> 1 week early facility access before grand opening.</div></li>
             <li class="flex items-start gap-3 pl-2"><span class="text-secondary mt-0.5 text-base">👕</span> <div><strong>Gift:</strong> Exclusive Founder's Edition swag item</em>.</div></li>
-            <li class="flex items-start gap-3 pl-2"><span class="text-secondary mt-0.5 text-base">✨</span> <div><strong>Bonus Points:</strong> 2,000 extra <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-2 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign-up <em>(3,000 total)</em>.</div></li>
+            <li class="flex items-start gap-3 pl-2"><span class="text-secondary mt-0.5 text-base">✨</span> <div><strong>Bonus Points:</strong> 2,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-2 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign-up <em>(3,000 total)</em>.</div></li>
             
             <li class="relative py-2">
               <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -1127,7 +1087,7 @@
           </h4>
           <ul class="text-sm text-primary/80 space-y-4">
             <li class="flex items-start gap-3 pl-2"><span class="text-secondary mt-0.5 text-base">👕</span> <div><strong>Gift:</strong> Exclusive Founder's Edition swag item.</div></li>
-            <li class="flex items-start gap-3 pl-2"><span class="text-secondary mt-0.5 text-base">✨</span> <div><strong>Bonus Points:</strong> 1,000 extra <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-2 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign-up <em>(2,000 total)</em>.</div></li>
+            <li class="flex items-start gap-3 pl-2"><span class="text-secondary mt-0.5 text-base">✨</span> <div><strong>Bonus Points:</strong> 1,000 bonus <a href="#" onclick="scrollToFrontierPoints(); return false;" class="font-bold underline decoration-secondary decoration-2 underline-offset-2 hover:text-primary transition-colors cursor-pointer">Frontier Points</a> at sign-up <em>(2,000 total)</em>.</div></li>
 
             <li class="relative py-2">
               <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -1298,19 +1258,18 @@
         const container = document.getElementById(containerId);
         if (!container) return;
 
-        // Allow the container to wrap so the button drops to a new line
-        container.classList.add('flex-wrap');
-
-        // Target the standard card (the second card in the container)
+        // Target the founder and standard cards
+        const founderCard = container.querySelectorAll('.plan-card')[0];
         const standardCard = container.querySelectorAll('.plan-card')[1];
-        if (standardCard) {
+        
+        if (founderCard && standardCard) {
           // Hide standard card by default
           standardCard.classList.remove('flex');
           standardCard.classList.add('hidden');
           
-          // Create the toggle button
+          // Create the toggle button container
           const btnWrapper = document.createElement('div');
-          btnWrapper.className = 'w-full flex justify-center mt-2';
+          btnWrapper.className = 'w-full flex justify-center mt-4';
           
           const toggleBtn = document.createElement('button');
           toggleBtn.className = 'text-sm font-bold text-primary/60 hover:text-primary underline decoration-primary/30 underline-offset-4 transition-colors';
@@ -1318,20 +1277,29 @@
           
           toggleBtn.onclick = function() {
             if (standardCard.classList.contains('hidden')) {
-              // Show the standard plan
+              // Show standard plan, Hide Founder plan
               standardCard.classList.remove('hidden');
               standardCard.classList.add('flex');
-              this.textContent = 'Hide Standard Plan';
+              founderCard.classList.remove('flex');
+              founderCard.classList.add('hidden');
+              this.textContent = 'View Founder\'s Edition';
               
-              // Retrigger the fade-up animation for a smooth reveal
+              // Retrigger the fade-up animation
               standardCard.style.animation = 'none';
               void standardCard.offsetWidth; // Trigger reflow
               standardCard.style.animation = 'fadeUp 0.4s ease forwards';
             } else {
-              // Hide the standard plan
+              // Show Founder plan, Hide Standard plan
               standardCard.classList.add('hidden');
               standardCard.classList.remove('flex');
+              founderCard.classList.remove('hidden');
+              founderCard.classList.add('flex');
               this.textContent = 'View Standard Plan';
+
+              // Retrigger the fade-up animation
+              founderCard.style.animation = 'none';
+              void founderCard.offsetWidth; // Trigger reflow
+              founderCard.style.animation = 'fadeUp 0.4s ease forwards';
             }
           };
           
@@ -1366,47 +1334,46 @@
         card.style.animationDelay = (i * 0.1) + 's';
       });
     }
+    // Wrapper for backwards compatibility with quiz buttons
     function toggleBilling(tier, cycle) {
-      const annualBtn = document.getElementById(`${tier}-annual-btn`);
-      const monthlyBtn = document.getElementById(`${tier}-monthly-btn`);
-      const annualCards = document.getElementById(`${tier}-annual-cards`);
-      const monthlyCards = document.getElementById(`${tier}-monthly-cards`);
+      toggleMasterBilling(cycle);
+    }
+
+    function toggleMasterBilling(cycle) {
+      const annualBtn = document.getElementById(`master-annual-btn`);
+      const monthlyBtn = document.getElementById(`master-monthly-btn`);
+      const annualContainer = document.getElementById(`master-annual-container`);
+      const monthlyContainer = document.getElementById(`master-monthly-container`);
 
       if (cycle === 'annual') {
-        // Toggle Buttons
         annualBtn.classList.add('bg-white', 'shadow-sm', 'text-primary');
         annualBtn.classList.remove('text-primary/60');
         monthlyBtn.classList.remove('bg-white', 'shadow-sm', 'text-primary');
         monthlyBtn.classList.add('text-primary/60');
 
-        // Toggle Cards
-        monthlyCards.classList.add('hidden');
-        monthlyCards.classList.remove('flex', 'md:flex-row');
-        annualCards.classList.remove('hidden');
-        annualCards.classList.add('flex', 'md:flex-row');
-
+        monthlyContainer.classList.add('hidden');
+        monthlyContainer.classList.remove('grid');
+        annualContainer.classList.remove('hidden');
+        annualContainer.classList.add('grid');
       } else {
-        // Toggle Buttons
         monthlyBtn.classList.add('bg-white', 'shadow-sm', 'text-primary');
         monthlyBtn.classList.remove('text-primary/60');
         annualBtn.classList.remove('bg-white', 'shadow-sm', 'text-primary');
         annualBtn.classList.add('text-primary/60');
 
-        // Toggle Cards
-        annualCards.classList.add('hidden');
-        annualCards.classList.remove('flex', 'md:flex-row');
-        monthlyCards.classList.remove('hidden');
-        monthlyCards.classList.add('flex', 'md:flex-row');
+        annualContainer.classList.add('hidden');
+        annualContainer.classList.remove('grid');
+        monthlyContainer.classList.remove('hidden');
+        monthlyContainer.classList.add('grid');
       }
 
-      // Re-trigger fade-up animations on the active cards
-      const activeContainer = cycle === 'annual' ? annualCards : monthlyCards;
+      const activeContainer = cycle === 'annual' ? annualContainer : monthlyContainer;
       const cards = activeContainer.querySelectorAll('.plan-card');
       cards.forEach((card, i) => {
         card.style.animation = 'none';
         void card.offsetWidth; // forces browser to reflow
         card.style.animation = 'fadeUp 0.5s ease forwards';
-        card.style.animationDelay = (i * 0.1) + 's';
+        card.style.animationDelay = (i * 0.05) + 's';
       });
     }
     function showDemoToast() {
