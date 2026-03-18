@@ -275,7 +275,7 @@
     <section id="tab-trailblazer" class="tab-content active" role="tabpanel">
      <div id="trailblazer-pricing-cards" class="hidden flex-col w-full">
        <div class="flex flex-col items-center text-center mb-10 max-w-3xl mx-auto px-4">
-  <h2 class="font-display text-3xl md:text-4xl font-800 text-primary mb-3">⛰️Trailblazer</h2>
+  <h2 class="font-display text-3xl md:text-4xl font-800 text-primary mb-3">⛰️ Trailblazer</h2>
   <p class="text-base md:text-lg text-primary/70 leading-relaxed max-w-2xl">Ultimate Access</p>
 </div>
      <div class="flex justify-center mb-8 relative z-10">
@@ -797,7 +797,7 @@
      </div>
 
      <div class="bg-white/80 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8 mt-6 mb-8 max-w-5xl mx-auto">
-       <h3 class="font-display text-3xl md:text-4xl font-800 text-primary mb-3 border-b border-primary/10 pb-4 text-left">🧭Pioneer</h3>
+       <h3 class="font-display text-3xl md:text-4xl font-800 text-primary mb-3 border-b border-primary/10 pb-4 text-left">🧭 Pioneer</h3>
        <p class="text-sm text-primary/70 mb-8 leading-relaxed max-w-3xl">The Pioneer membership gives you access to unlimited scheduled open play sessions and exclusive member benefits.</p>
        
        <div class="mb-10">
@@ -885,7 +885,7 @@
      </div>
 
      <div class="bg-white/80 rounded-2xl shadow-sm border border-primary/10 p-6 md:p-8 mt-6 mb-8 max-w-5xl mx-auto">
-       <h3 class="font-display text-3xl md:text-4xl font-800 text-primary mb-3 border-b border-primary/10 pb-4 text-left">🌿Explorer Account</h3>
+       <h3 class="font-display text-3xl md:text-4xl font-800 text-primary mb-3 border-b border-primary/10 pb-4 text-left">🌿 Explorer Account</h3>
        <p class="text-sm text-primary/70 mb-8 leading-relaxed max-w-3xl">The Explorer account is your free, pay-as-you-play gateway to Frontier Pickleball. Enjoy the flexibility to book courts and sessions à la carte, paying only for what you play with no monthly commitment.</p>
        
        <div class="flex flex-col gap-10 mb-8 w-full">
@@ -1488,6 +1488,14 @@
     }
 
     function switchTab(tab) {
+      // 1. Snapshot the navigation bar's position BEFORE the switch
+      const currentActiveTab = document.querySelector('.tab-content.active');
+      const currentNav = currentActiveTab ? currentActiveTab.querySelector('nav') : null;
+      let previousNavTop = 0;
+      if (currentNav) {
+        previousNavTop = currentNav.getBoundingClientRect().top;
+      }
+
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       
       // Keep pricing cards visible across tabs if they were already opened
@@ -1515,6 +1523,15 @@
         card.style.animation = 'fadeUp 0.5s ease forwards';
         card.style.animationDelay = (i * 0.1) + 's';
       });
+
+      // 2. Adjust the browser scroll AFTER the switch to match the snapshot
+      if (currentNav) {
+        const newNav = document.getElementById('tab-' + tab).querySelector('nav');
+        if (newNav) {
+          const newNavTop = newNav.getBoundingClientRect().top;
+          window.scrollBy(0, newNavTop - previousNavTop);
+        }
+      }
     }
     function toggleBilling(tier, cycle) {
       const annualBtn = document.getElementById(`${tier}-annual-btn`);
