@@ -1488,14 +1488,6 @@
     }
 
     function switchTab(tab) {
-      // 1. Snapshot the navigation bar's position BEFORE the switch
-      const currentActiveTab = document.querySelector('.tab-content.active');
-      const currentNav = currentActiveTab ? currentActiveTab.querySelector('nav') : null;
-      let previousNavTop = 0;
-      if (currentNav) {
-        previousNavTop = currentNav.getBoundingClientRect().top;
-      }
-
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       
       // Keep pricing cards visible across tabs if they were already opened
@@ -1523,15 +1515,6 @@
         card.style.animation = 'fadeUp 0.5s ease forwards';
         card.style.animationDelay = (i * 0.1) + 's';
       });
-
-      // 2. Adjust the browser scroll AFTER the switch to match the snapshot
-      if (currentNav) {
-        const newNav = document.getElementById('tab-' + tab).querySelector('nav');
-        if (newNav) {
-          const newNavTop = newNav.getBoundingClientRect().top;
-          window.scrollBy(0, newNavTop - previousNavTop);
-        }
-      }
     }
     function toggleBilling(tier, cycle) {
       const annualBtn = document.getElementById(`${tier}-annual-btn`);
