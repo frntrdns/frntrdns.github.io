@@ -140,7 +140,7 @@
 
         <!-- Header Section -->
 
-        <section class="max-w-5xl mx-auto mt-0 bg-white/60 backdrop-blur-sm rounded-3xl shadow-soft border border-primary/10 p-8 md:p-16 mb-8 flex flex-col items-center justify-center relative overflow-hidden">
+        <section class="max-w-5xl mx-auto mt-0 bg-white/60 backdrop-blur-sm rounded-3xl shadow-soft border border-primary/10 p-8 md:p-16 flex flex-col items-center justify-center relative overflow-hidden">
             
             <div class="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-30" style="background: linear-gradient(45deg, #C8A961 0%, transparent 80%);"></div>
 
@@ -194,7 +194,7 @@
         </section>
         
         <!-- Membership Options -->
-        <section class="max-w-5xl mx-auto mt-8 bg-white/60 backdrop-blur-sm rounded-3xl shadow-soft border border-primary/10 p-6 md:p-10 mb-8">
+        <section class="max-w-5xl mx-auto mt-6 bg-white/60 backdrop-blur-sm rounded-3xl shadow-soft border border-primary/10 p-6 md:p-10">
             
             <h3 class="font-serif text-2xl font-bold mb-3 text-left">Memberships</h3>
             <p class="text-primary/80 leading-relaxed mb-6">
@@ -210,11 +210,13 @@
                     </div>
                     <!--Pioneer Membership-->
                     <div class="flex justify-between items-start mb-5">
-                        <div>
-                            <div class="flex items-center gap-2 mb-1">
-                                <h2 id="pioneer-title" class="font-serif text-[1.35rem] md:text-2xl font-bold transition-opacity duration-200">🧭 Pioneer Annual</h2>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center gap-2">
+                                <h2 id="pioneer-title" class="font-serif text-[1.35rem] md:text-2xl font-bold">🧭 Pioneer</h2>
                             </div>
-                            <!-- <p class="text-primary/60 text-sm">For the dedicated open-play enthusiast.</p> -->
+                            <div id="pioneer-plan-badge" class="flex items-center gap-1.5 text-xs font-bold text-primary bg-secondary/10 w-fit px-2.5 py-1 rounded-lg border border-primary/20 transition-opacity duration-200">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i> <span>Annual Plan</span>
+                            </div>
                         </div>
                     </div>
                     
@@ -233,7 +235,7 @@
                     <div class="mb-6 mt-auto">
                         <div class="flex items-end gap-1 mb-1">
                             <span class="text-4xl font-serif font-bold" id="pioneer-price">$99</span>
-                            <span class="text-primary/60 font-medium mb-1">/mo</span>
+                            <span class="text-primary/60 font-medium mb-1" id="pioneer-period">/mo for 12 months</span>
                         </div>
                         <p class="text-sm font-medium text-primary/70 h-5" id="pioneer-billed">billed $1,188 annually</p>
                         
@@ -259,12 +261,14 @@
                     </div>
                     
                     <div class="flex justify-between items-start mb-5">
-                        <div>
-                            <div class="flex items-center gap-2 mb-1">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center gap-2">
                                 <span class="text-2xl">🏔️</span>
-                                <h2 id="trailblazer-title" class="font-serif text-[1.35rem] md:text-2xl font-bold shimmer-text transition-opacity duration-200">Trailblazer Annual</h2>
+                                <h2 id="trailblazer-title" class="font-serif text-[1.35rem] md:text-2xl font-bold shimmer-text">Trailblazer</h2>
                             </div>
-                            <!-- <p class="text-cream/70 text-sm">The ultimate Frontier Pickleball experience.</p> -->
+                            <div id="trailblazer-plan-badge" class="flex items-center gap-1.5 text-xs font-bold text-white bg-white/10 w-fit px-2.5 py-1 rounded-lg border border-white/20 transition-opacity duration-200">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i> <span>Annual Plan</span>
+                            </div>
                         </div>
                     </div>
                     <!-- Trailblazer Membership -->
@@ -290,7 +294,7 @@
                     <div class="mb-6 mt-auto">
                         <div class="flex items-end gap-1 mb-1">
                             <span class="text-4xl font-serif font-bold text-white" id="trailblazer-price">$125</span>
-                            <span class="text-cream/60 font-medium mb-1">/mo</span>
+                            <span class="text-cream/60 font-medium mb-1" id="trailblazer-period">/mo for 12 months</span>
                         </div>
                         <p class="text-sm font-medium text-cream/70 h-5" id="trailblazer-billed">billed $1,499 annually</p>
                         
@@ -304,7 +308,7 @@
                         </div>
                     </div>
 
-                    <button id="trailblazer-toggle-btn" onclick="toggleCardBilling('trailblazer')" class="w-full py-3 rounded-xl font-bold bg-gold-shimmer text-primary hover:shadow-[0_0_20px_rgba(200,169,97,0.4)] transition-all duration-300 border-2 border-transparent">
+                    <button id="trailblazer-toggle-btn" onclick="toggleCardBilling('trailblazer')" class="w-full py-3 rounded-xl font-bold bg-gold-shimmer text-primary hover:shadow-[0_0_20px_rgba(200,169,97,0.4)] transition-all duration-300">
                         Show Monthly Plan
                     </button>
                 </div>
@@ -836,12 +840,12 @@
         // Pricing Data
         const pricing = {
             monthly: {
-                pioneer: { price: '$119', billed: 'billed monthly, cancel anytime', promoOpacity: '0' },
-                trailblazer: { price: '$149', billed: 'billed monthly, cancel anytime', promoOpacity: '0' }
+                pioneer: { price: '$119', period: '/mo', billed: 'billed monthly, cancel anytime', promoOpacity: '0' },
+                trailblazer: { price: '$149', period: '/mo', billed: 'billed monthly, cancel anytime', promoOpacity: '0' }
             },
             annual: {
-                pioneer: { price: '$99', billed: 'billed $1,188 annually', promoOpacity: '1' },
-                trailblazer: { price: '$125', billed: 'billed $1,499 annually', promoOpacity: '1' }
+                pioneer: { price: '$99', period: '/mo for 12 months', billed: 'billed $1,188 annually', promoOpacity: '1' },
+                trailblazer: { price: '$125', period: '/mo for 12 months', billed: 'billed $1,499 annually', promoOpacity: '1' }
             }
         };
 
@@ -858,21 +862,24 @@
 
             // DOM Elements for this card
             const priceEl = document.getElementById(`${card}-price`);
+            const periodEl = document.getElementById(`${card}-period`);
             const billedEl = document.getElementById(`${card}-billed`);
             const promoEl = document.getElementById(`${card}-promo`);
             const btnEl = document.getElementById(`${card}-toggle-btn`);
-            const titleEl = document.getElementById(`${card}-title`);
+            const badgeEl = document.getElementById(`${card}-plan-badge`);
 
             // 1. Update Button Text IMMEDIATELY
             btnEl.innerText = newState === 'annual' ? 'Show Monthly Plan' : 'Show Annual Plan';
 
             // 2. Animate Data Change
             priceEl.style.transition = 'opacity 0.2s ease';
+            if(periodEl) periodEl.style.transition = 'opacity 0.2s ease';
             billedEl.style.transition = 'opacity 0.2s ease';
-            titleEl.style.transition = 'opacity 0.2s ease';
+            if(badgeEl) badgeEl.style.transition = 'opacity 0.2s ease';
             
-            titleEl.style.opacity = '0';
+            if(badgeEl) badgeEl.style.opacity = '0';
             priceEl.style.opacity = '0';
+            if(periodEl) periodEl.style.opacity = '0';
             billedEl.style.opacity = '0';
             
             // Fade promo out immediately alongside the other text
@@ -883,13 +890,15 @@
             setTimeout(() => {
                 // Update text content while hidden
                 priceEl.innerText = pricing[newState][card].price;
+                if(periodEl) periodEl.innerText = pricing[newState][card].period;
                 billedEl.innerText = pricing[newState][card].billed;
                 
-                // Update title text depending on the card and state
-                if (card === 'pioneer') {
-                    titleEl.innerText = `🧭 Pioneer ${newState === 'annual' ? 'Annual' : 'Monthly'}`;
-                } else if (card === 'trailblazer') {
-                    titleEl.innerText = `Trailblazer ${newState === 'annual' ? 'Annual' : 'Monthly'}`;
+                // Update badge text and icon depending on state
+                if (badgeEl) {
+                    const iconName = newState === 'annual' ? 'calendar' : 'refresh-cw';
+                    const planText = newState === 'annual' ? 'Annual Plan' : 'Monthly Plan';
+                    badgeEl.innerHTML = `<i data-lucide="${iconName}" class="w-3.5 h-3.5"></i> <span>${planText}</span>`;
+                    lucide.createIcons(); // Re-initialize the newly injected icon
                 }
                 
                 // Handle ONLY promo visibility (13th Month Free)
@@ -906,8 +915,9 @@
                 }
 
                 // Fade back in
-                titleEl.style.opacity = '1';
+                if(badgeEl) badgeEl.style.opacity = '1';
                 priceEl.style.opacity = '1';
+                if(periodEl) periodEl.style.opacity = '1';
                 billedEl.style.opacity = '1';
             }, 200);
         }
