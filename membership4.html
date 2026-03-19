@@ -201,7 +201,7 @@
                     <div class="flex justify-between items-start mb-5">
                         <div>
                             <div class="flex items-center gap-2 mb-1">
-                                <h2 class="font-serif text-2xl font-bold">🧭 Pioneer</h2>
+                                <h2 id="pioneer-title" class="font-serif text-[1.35rem] md:text-2xl font-bold transition-opacity duration-200">🧭 Pioneer Annual</h2>
                             </div>
                             <p class="text-primary/60 text-sm">For the dedicated open-play enthusiast.</p>
                         </div>
@@ -212,13 +212,13 @@
                             <span class="text-4xl font-serif font-bold" id="pioneer-price">$99</span>
                             <span class="text-primary/60 font-medium mb-1">/mo</span>
                         </div>
-                        <p class="text-sm font-medium text-primary/70 h-5" id="pioneer-billed">Billed annually</p>
+                        <p class="text-sm font-medium text-primary/70 h-5" id="pioneer-billed">billed $1,188 annually</p>
                         
                         <div class="mt-4 space-y-2">
                             <div id="pioneer-fee" class="flex items-center gap-2 text-xs font-bold text-secondary bg-secondary/10 w-fit px-2.5 py-1 rounded-lg border border-secondary/20 transition-opacity duration-300">
                                 <i data-lucide="tag" class="w-3.5 h-3.5"></i> <span class="line-through opacity-70 font-bold">$99</span> $1 Initiation Fee
                             </div>
-                            <div id="pioneer-promo" class="flex items-center gap-2 text-xs font-bold text-tertiary1 bg-tertiary1/10 w-fit px-2.5 py-1 rounded-lg border border-tertiary1/20 transition-opacity duration-300">
+                            <div id="pioneer-promo" class="flex items-center gap-2 text-xs font-bold text-primary bg-tertiary1/10 w-fit px-2.5 py-1 rounded-lg border border-tertiary1/20 transition-opacity duration-300">
                                 <i data-lucide="gift" class="w-3.5 h-3.5"></i> 13th Month Free!
                             </div>
                         </div>
@@ -242,7 +242,7 @@
                     </button>
                 </div>
 
-                <div class="bg-green-gradient text-cream rounded-3xl p-6 shadow-xl flex flex-col relative">
+                <div class="bg-green-gradient text-cream rounded-3xl p-6 shadow-xl flex flex-col relative border border-transparent">
                     <div class="inline-flex items-center gap-1.5 bg-gold-shimmer px-3 py-1 rounded-full text-primary font-bold text-xs shadow-glow whitespace-nowrap mb-4" style="width: max-content;">
                         <i data-lucide="star" class="w-3 h-3"></i>
                         Founder's Edition
@@ -252,7 +252,7 @@
                         <div>
                             <div class="flex items-center gap-2 mb-1">
                                 <span class="text-2xl">🏔️</span>
-                                <h2 class="font-serif text-2xl font-bold shimmer-text">Trailblazer</h2>
+                                <h2 id="trailblazer-title" class="font-serif text-[1.35rem] md:text-2xl font-bold shimmer-text transition-opacity duration-200">Trailblazer Annual</h2>
                             </div>
                             <p class="text-cream/70 text-sm">The ultimate Frontier Pickleball experience.</p>
                         </div>
@@ -263,7 +263,7 @@
                             <span class="text-4xl font-serif font-bold text-white" id="trailblazer-price">$125</span>
                             <span class="text-cream/60 font-medium mb-1">/mo</span>
                         </div>
-                        <p class="text-sm font-medium text-cream/70 h-5" id="trailblazer-billed">Billed $1,499 annually</p>
+                        <p class="text-sm font-medium text-cream/70 h-5" id="trailblazer-billed">billed $1,499 annually</p>
                         
                         <div class="mt-4 space-y-2">
                             <div id="trailblazer-fee" class="flex items-center gap-2 text-xs font-bold text-secondary bg-secondary/10 w-fit px-2.5 py-1 rounded-lg border border-secondary/20 transition-opacity duration-300">
@@ -295,7 +295,7 @@
                         </ul>
                     </div>
 
-                    <button id="trailblazer-toggle-btn" onclick="toggleCardBilling('trailblazer')" class="w-full py-3 mt-6 rounded-xl font-bold bg-gold-shimmer text-primary hover:shadow-[0_0_20px_rgba(200,169,97,0.4)] transition-all duration-300">
+                    <button id="trailblazer-toggle-btn" onclick="toggleCardBilling('trailblazer')" class="w-full py-3 mt-6 rounded-xl font-bold bg-gold-shimmer text-primary hover:shadow-[0_0_20px_rgba(200,169,97,0.4)] transition-all duration-300 border-2 border-transparent">
                         Show Monthly Plan
                     </button>
                 </div>
@@ -411,6 +411,17 @@
                     
                     // Re-initialize the newly injected Lucide icon
                     lucide.createIcons();
+
+
+                    // Dismiss tooltips on mobile when tapping outside
+        document.addEventListener('touchstart', function(e) {
+            if (!e.target.closest('.has-tooltip')) {
+                document.querySelectorAll('.has-tooltip').forEach(function(tooltip) {
+                    tooltip.blur();
+                });
+            }
+        });
+                    
                 }
             </script>
         </section>
@@ -659,7 +670,7 @@
                     
                     <li class="flex items-center justify-between bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
                         <span class="flex items-center gap-2.5">
-                            <i data-lucide="ticket" class="w-4 h-4 text-tertiary1 shrink-0"></i>
+                            <i data-lucide="ticket" class="w-4 h-4 text-primary shrink-0"></i>
                             <span tabindex="0" class="has-tooltip left-align pb-0.5">Explorer Pass
                                 <span class="tooltip-content z-50">All Day Open Play Pass</span>
                             </span>
@@ -669,7 +680,7 @@
 
                     <li class="flex items-center justify-between bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
                         <span class="flex items-center gap-2.5">
-                            <i data-lucide="clock" class="w-4 h-4 text-tertiary1 shrink-0"></i>
+                            <i data-lucide="clock" class="w-4 h-4 text-primary shrink-0"></i>
                             <span>Court Reservations</span>
                         </span>
                         <span class="font-bold text-primary text-base">$20<span class="text-xs font-normal text-primary/60">/hr</span></span>
@@ -677,7 +688,7 @@
 
                     <li class="flex items-center justify-between bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
                         <span class="flex items-center gap-2.5">
-                            <i data-lucide="users" class="w-4 h-4 text-tertiary1 shrink-0"></i>
+                            <i data-lucide="users" class="w-4 h-4 text-primary shrink-0"></i>
                             <span>Leagues & Clinics</span>
                         </span>
                         <span class="font-bold text-primary">Retail Price</span>
@@ -685,7 +696,7 @@
 
                     <li class="flex items-center justify-between bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
                         <span class="flex items-center gap-2.5">
-                            <i data-lucide="shopping-bag" class="w-4 h-4 text-tertiary1 shrink-0"></i>
+                            <i data-lucide="shopping-bag" class="w-4 h-4 text-primary shrink-0"></i>
                             <span>Equipment Rental</span>
                         </span>
                         <span class="font-bold text-primary">Retail Price</span>
@@ -707,31 +718,31 @@
                 </p>
                 <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm text-primary/80 font-medium">
                     <li class="flex items-center gap-2.5 bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
-                        <i data-lucide="layout-grid" class="w-4 h-4 text-tertiary1 shrink-0"></i> 14 Premium Courts
+                        <i data-lucide="layout-grid" class="w-4 h-4 text-primary shrink-0"></i> 14 Premium Courts
                     </li>
                     <li class="flex items-center gap-2.5 bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
-                        <i data-lucide="video" class="w-4 h-4 text-tertiary1 shrink-0"></i> Instant Replay
+                        <i data-lucide="video" class="w-4 h-4 text-primary shrink-0"></i> Instant Replay
                     </li>
                     <li class="flex items-center gap-2.5 bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
-                        <i data-lucide="binoculars" class="w-4 h-4 text-tertiary1 shrink-0"></i> Observation Area
+                        <i data-lucide="binoculars" class="w-4 h-4 text-primary shrink-0"></i> Observation Area
                     </li>
                     <li class="flex items-center gap-2.5 bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
-                        <i data-lucide="bot" class="w-4 h-4 text-tertiary1 shrink-0"></i> Ball Machines
+                        <i data-lucide="bot" class="w-4 h-4 text-primary shrink-0"></i> Ball Machines
                     </li>
                     <li class="flex items-center gap-2.5 bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
-                        <i data-lucide="shopping-bag" class="w-4 h-4 text-tertiary1 shrink-0"></i> Pro Shop
+                        <i data-lucide="shopping-bag" class="w-4 h-4 text-primary shrink-0"></i> Pro Shop
                     </li>
                     <li class="flex items-center gap-2.5 bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
-                        <i data-lucide="bath" class="w-4 h-4 text-tertiary1 shrink-0"></i> Lockers & Showers
+                        <i data-lucide="bath" class="w-4 h-4 text-primary shrink-0"></i> Lockers & Showers
                     </li>
                     <li class="flex items-center gap-2.5 bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
-                        <i data-lucide="trophy" class="w-4 h-4 text-tertiary1 shrink-0"></i> Tournaments
+                        <i data-lucide="trophy" class="w-4 h-4 text-primary shrink-0"></i> Tournaments
                     </li>
                     <li class="flex items-center gap-2.5 bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors">
-                        <i data-lucide="users" class="w-4 h-4 text-tertiary1 shrink-0"></i> Leagues & Clinics
+                        <i data-lucide="users" class="w-4 h-4 text-primary shrink-0"></i> Leagues & Clinics
                     </li>
                     <li class="flex items-center gap-2.5 bg-white/40 p-3.5 rounded-xl border border-primary/10 hover:bg-white/60 transition-colors md:col-span-1 sm:col-span-2">
-                        <i data-lucide="party-popper" class="w-4 h-4 text-tertiary1 shrink-0"></i> 2 Private Event Rooms
+                        <i data-lucide="party-popper" class="w-4 h-4 text-primary shrink-0"></i> 2 Private Event Rooms
                     </li>
                 </ul>
             </div>
@@ -850,13 +861,17 @@
             const billedEl = document.getElementById(`${card}-billed`);
             const promoEl = document.getElementById(`${card}-promo`);
             const btnEl = document.getElementById(`${card}-toggle-btn`);
+            const titleEl = document.getElementById(`${card}-title`);
 
-            // 1. Update Button Text IMMEDIATELY so it feels responsive to the click
+            // 1. Update Button Text IMMEDIATELY
             btnEl.innerText = newState === 'annual' ? 'Show Monthly Plan' : 'Show Annual Plan';
 
-            // 2. Animate Data Change (Fade out prices)
+            // 2. Animate Data Change
             priceEl.style.transition = 'opacity 0.2s ease';
             billedEl.style.transition = 'opacity 0.2s ease';
+            titleEl.style.transition = 'opacity 0.2s ease';
+            
+            titleEl.style.opacity = '0';
             priceEl.style.opacity = '0';
             billedEl.style.opacity = '0';
             
@@ -865,13 +880,21 @@
                 priceEl.innerText = pricing[newState][card].price;
                 billedEl.innerText = pricing[newState][card].billed;
                 
-                // Handle promo visibility
+                // Update title text depending on the card and state
+                if (card === 'pioneer') {
+                    titleEl.innerText = `🧭 Pioneer ${newState === 'annual' ? 'Annual' : 'Monthly'}`;
+                } else if (card === 'trailblazer') {
+                    titleEl.innerText = `Trailblazer ${newState === 'annual' ? 'Annual' : 'Monthly'}`;
+                }
+                
+                // Handle ONLY promo visibility (13th Month Free)
                 if (promoEl) {
-                    promoEl.style.opacity = pricing[newState][card].promoOpacity;
                     promoEl.style.visibility = newState === 'annual' ? 'visible' : 'hidden';
+                    promoEl.style.opacity = pricing[newState][card].promoOpacity;
                 }
 
                 // Fade back in
+                titleEl.style.opacity = '1';
                 priceEl.style.opacity = '1';
                 billedEl.style.opacity = '1';
             }, 200);
