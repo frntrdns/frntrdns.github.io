@@ -95,12 +95,20 @@
             border-color: #1A3626 transparent transparent transparent;
         }
 
-        /* Show tooltip on hover or keyboard focus */
-        .has-tooltip:hover .tooltip-content,
+        /* Show tooltip on hover ONLY for devices with a mouse */
+        @media (hover: hover) {
+            .has-tooltip:hover .tooltip-content {
+                visibility: visible;
+                opacity: 1;
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Show tooltip on focus (keyboard tabbing or mobile tapping) */
         .has-tooltip:focus .tooltip-content {
             visibility: visible;
             opacity: 1;
-            transform: translateY(-8px); /* Floats up slightly */
+            transform: translateY(-8px);
         }
     </style>
 </head>
@@ -412,15 +420,6 @@
                     // Re-initialize the newly injected Lucide icon
                     lucide.createIcons();
 
-
-                    // Dismiss tooltips on mobile when tapping outside
-        document.addEventListener('touchstart', function(e) {
-            if (!e.target.closest('.has-tooltip')) {
-                document.querySelectorAll('.has-tooltip').forEach(function(tooltip) {
-                    tooltip.blur();
-                });
-            }
-        });
                     
                 }
             </script>
@@ -899,6 +898,15 @@
                 billedEl.style.opacity = '1';
             }, 200);
         }
+
+        // Dismiss tooltips on mobile when tapping outside
+        document.addEventListener('touchstart', function(e) {
+            if (!e.target.closest('.has-tooltip')) {
+                document.querySelectorAll('.has-tooltip').forEach(function(tooltip) {
+                    tooltip.blur();
+                });
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>
