@@ -975,9 +975,9 @@
             toast.id = 'demo-toast';
             
             // Tailwind classes for styling and animation (starts hidden/pushed down)
-            toast.className = 'fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-primary text-cream border border-primary/20 px-6 py-3 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 font-medium text-sm transition-all duration-300 translate-y-10 opacity-0';
+            toast.className = 'fixed bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 bg-primary text-cream border-2 border-secondary/60 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl shadow-2xl z-[100] flex items-center gap-2 sm:gap-3 font-medium text-[11px] sm:text-sm whitespace-nowrap max-w-[95vw] transition-all duration-300 translate-y-10 opacity-0';
             
-            toast.innerHTML = '<i data-lucide="info" class="w-5 h-5 text-secondary"></i> Demo mode only. No actual purchase will be made.';
+            toast.innerHTML = '<i data-lucide="info" class="w-3.5 h-3.5 sm:w-5 sm:h-5 text-secondary shrink-0"></i> Demo mode only. No actual purchase will be made.';
             
             document.body.appendChild(toast);
             lucide.createIcons(); // Initialize the info icon
